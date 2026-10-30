@@ -1,0 +1,54 @@
+{
+ "data": {
+  "nearest": {
+   "edges": [
+    {
+     "node": {
+      "distance": 58.70003561005926,
+      "place": {
+       "id": "NSR:StopPlace:58381",
+       "name": "Majorstuen",
+       "latitude": 59.929213,
+       "longitude": 10.71634,
+       "transportMode": [
+        "bus",
+        "tram",
+        "metro"
+       ]
+      }
+     }
+    },
+    {
+     "node": {
+      "distance": 247.43863550797994,
+      "place": {
+       "id": "NSR:StopPlace:58354",
+       "name": "Frogner stadion",
+       "latitude": 59.927227,
+       "longitude": 10.712719,
+       "transportMode": [
+        "bus",
+        "tram"
+       ]
+      }
+     }
+    },
+    {
+     "node": {
+      "distance": 451.9296519623337,
+      "place": {
+       "id": "NSR:StopPlace:58403",
+       "name": "Bogstadveien",
+       "latitude": 59.926222,
+       "longitude": 10.721508,
+       "transportMode": [
+        "bus",
+        "tram"
+       ]
+      }
+     }
+    }
+   ]
+  }
+ }
+}

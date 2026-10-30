@@ -1,0 +1,764 @@
+{
+ "data": {
+  "stopPlace": {
+   "id": "NSR:StopPlace:58381",
+   "name": "Majorstuen",
+   "latitude": 59.929213,
+   "longitude": 10.71634,
+   "transportMode": [
+    "bus",
+    "tram",
+    "metro"
+   ],
+   "quays": [
+    {
+     "id": "NSR:Quay:104414",
+     "publicCode": "A",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:19",
+       "publicCode": "19",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:15",
+       "publicCode": "15",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:12",
+       "publicCode": "12",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Ljabru"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Ljabru"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Ljabru"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:104413",
+     "publicCode": "B",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:19",
+       "publicCode": "19",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:12",
+       "publicCode": "12",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:15",
+       "publicCode": "15",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Kjelsås"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Kjelsås"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Kjelsås"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8076",
+     "publicCode": "G",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:46",
+       "publicCode": "46",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3901",
+       "publicCode": "1N",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:2046",
+       "publicCode": "46X",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Ullerntoppen"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Ullerntoppen"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Ullerntoppen"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8077",
+     "publicCode": "",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:46",
+       "publicCode": "46",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:2046",
+       "publicCode": "46X",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": []
+    },
+    {
+     "id": "NSR:Quay:8078",
+     "publicCode": "",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:4025",
+       "publicCode": "25B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:25",
+       "publicCode": "25",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": []
+    },
+    {
+     "id": "NSR:Quay:8079",
+     "publicCode": "F",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:25",
+       "publicCode": "25",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3901",
+       "publicCode": "1N",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:4025",
+       "publicCode": "25B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Haugerud"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Kjelsås stasjon"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Haugerud"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8089",
+     "publicCode": "E",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:28",
+       "publicCode": "28",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:20",
+       "publicCode": "20",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Skøyen"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Fornebu"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Skøyen"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8042",
+     "publicCode": "D",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:28",
+       "publicCode": "28",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:20",
+       "publicCode": "20",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Økern"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Galgeberg"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Galgeberg"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:109020",
+     "publicCode": null,
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:3003",
+       "publicCode": "3B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3002",
+       "publicCode": "2B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": []
+    },
+    {
+     "id": "NSR:Quay:109021",
+     "publicCode": null,
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:3002",
+       "publicCode": "2B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3003",
+       "publicCode": "3B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": []
+    },
+    {
+     "id": "NSR:Quay:109651",
+     "publicCode": null,
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:3002",
+       "publicCode": "2B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3003",
+       "publicCode": "3B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": []
+    },
+    {
+     "id": "NSR:Quay:109652",
+     "publicCode": null,
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:3002",
+       "publicCode": "2B",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": []
+    },
+    {
+     "id": "NSR:Quay:8066",
+     "publicCode": "H",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:45",
+       "publicCode": "45",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "NBU:Line:a7cafc59-feaf-4e61-9fa1-b7dce4ffe970",
+       "publicCode": "FB1",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": null,
+        "textColour": null
+       }
+      },
+      {
+       "id": "RUT:Line:3902",
+       "publicCode": "2N",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Oslo lufthavn"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Oslo lufthavn"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8067",
+     "publicCode": "J",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:45",
+       "publicCode": "45",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:28",
+       "publicCode": "28",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3902",
+       "publicCode": "2N",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "NBU:Line:a7cafc59-feaf-4e61-9fa1-b7dce4ffe970",
+       "publicCode": "FB1",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": null,
+        "textColour": null
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Fornebu"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Fornebu"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Voksen skog"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8027",
+     "publicCode": "1",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:4",
+       "publicCode": "4",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:2",
+       "publicCode": "2",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:5",
+       "publicCode": "5",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:1",
+       "publicCode": "1",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3",
+       "publicCode": "3",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Bergkrystallen"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Ellingsrudåsen"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Mortensrud"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8028",
+     "publicCode": "2",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:1",
+       "publicCode": "1",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:5",
+       "publicCode": "5",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:4",
+       "publicCode": "4",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:2",
+       "publicCode": "2",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3",
+       "publicCode": "3",
+       "transportMode": "metro",
+       "presentation": {
+        "colour": "EC700C",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Kolsås"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Vestli via Storo"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Østerås"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:8058",
+     "publicCode": "C",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:15",
+       "publicCode": "15",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:19",
+       "publicCode": "19",
+       "transportMode": "tram",
+       "presentation": {
+        "colour": "0B91EF",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": [
+      {
+       "destinationDisplay": {
+        "frontText": "Kjelsås"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Kjelsås"
+       }
+      },
+      {
+       "destinationDisplay": {
+        "frontText": "Kjelsås"
+       }
+      }
+     ]
+    },
+    {
+     "id": "NSR:Quay:102319",
+     "publicCode": "C",
+     "name": "Majorstuen",
+     "lines": [
+      {
+       "id": "RUT:Line:3912",
+       "publicCode": "12N",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      },
+      {
+       "id": "RUT:Line:3911",
+       "publicCode": "11N",
+       "transportMode": "bus",
+       "presentation": {
+        "colour": "E60000",
+        "textColour": "FFFFFF"
+       }
+      }
+     ],
+     "estimatedCalls": []
+    }
+   ]
+  }
+ }
+}
