@@ -32,6 +32,7 @@ final class Monitor {
   @ObservationIgnored private var failures = 0
   @ObservationIgnored private var jitter = 0.0
   @ObservationIgnored private var finishedAt = Date.distantPast
+  @ObservationIgnored private var fetchedAt = Date.distantPast
   @ObservationIgnored private var panelVisible = false
   @ObservationIgnored private var forced = false
   @ObservationIgnored private var woke = false
@@ -124,6 +125,7 @@ final class Monitor {
         nearbyStops = []
       }
     }
+    if settings.favorites != old.favorites { seenNotices = nil }
     if settings.nearby.enabled != old.nearby.enabled || settings.nearby.radius != old.nearby.radius
     {
       nearbyStale = true
@@ -180,6 +182,7 @@ final class Monitor {
       departures = try await client.departures(stopIDs: ids)
       lastError = nil
       failures = 0
+      fetchedAt = Date()
       noticeDisruptions()
     } catch {
       guard !Task.isCancelled else { return }
@@ -194,8 +197,13 @@ final class Monitor {
   }
 
   private func remind() {
-    guard !panelVisible, !reminders.isEmpty else { return }
-    let (alerts, remaining) = Reminders.check(reminders, departures: departures, now: now)
+    guard !panelVisible, !reminders.isEmpty,
+      Date().timeIntervalSince(fetchedAt) < Reminders.freshFor
+    else { return }
+    let walks = Dictionary(
+      sections.map { ($0.id, $0.walkMinutes) }, uniquingKeysWith: { first, _ in first })
+    let (alerts, remaining) = Reminders.check(
+      reminders, departures: departures, walks: walks, now: now)
     if remaining != reminders { reminders = remaining }
     alerts.forEach(showAlert)
   }

@@ -206,6 +206,7 @@ private struct DepartureRow: View {
         }
         .buttonStyle(.plain)
         .help(reminderLabel)
+        .accessibilityHidden(true)
       }
       if let platform = departure.platform { PlatformChip(code: platform) }
       time.frame(minWidth: 64, alignment: .trailing)
@@ -215,6 +216,7 @@ private struct DepartureRow: View {
     .onHover { hovering = $0 }
     .overlay(alignment: .top) { Palette.rule.frame(height: BoardMetrics.rule) }
     .accessibilityElement(children: .combine)
+    .accessibilityValue(armed ? Text("Reminder set") : Text(verbatim: ""))
     .accessibilityActions {
       if armed || armable { Button(reminderLabel, action: toggle) }
     }

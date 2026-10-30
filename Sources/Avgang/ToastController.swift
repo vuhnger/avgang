@@ -89,13 +89,17 @@ final class ToastController {
 
   func show(_ alert: TravelAlert) {
     let item = ToastItem(alert: alert)
-    let kept = ([item] + model.items).prefix(Self.limit)
+    var kept = [item] + model.items
+    while kept.count > Self.limit {
+      kept.remove(at: kept.lastIndex { !$0.sticky } ?? kept.count - 1)
+    }
     for id in timers.keys where !kept.contains(where: { $0.id == id }) { cancelTimer(id) }
-    model.items = Array(kept)
+    model.items = kept
     if !hovering { startTimer(item) }
   }
 
   func clear() {
+    hovering = false
     for id in Array(timers.keys) { cancelTimer(id) }
     model.items = []
   }

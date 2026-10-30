@@ -33,14 +33,14 @@ private func section(_ id: String, _ origin: BoardSection.Origin, _ departures: 
 struct ReminderTests {
   @Test func waitsUntilItIsTimeToLeave() {
     let bus = departure("31", in: 12)
-    let result = Reminders.check(reminder(bus), departures: ["S": [bus]], now: at(6.9))
+    let result = Reminders.check(reminder(bus), departures: ["S": [bus]], walks: [:], now: at(6.9))
     #expect(result.alerts.isEmpty)
     #expect(result.remaining[bus.id] != nil)
   }
 
   @Test func firesOnceWhenItIsTimeToLeave() {
     let bus = departure("31", in: 12)
-    let result = Reminders.check(reminder(bus), departures: ["S": [bus]], now: at(7))
+    let result = Reminders.check(reminder(bus), departures: ["S": [bus]], walks: [:], now: at(7))
     #expect(result.alerts == [.leave(bus, stop: "Majorstuen")])
     #expect(result.remaining.isEmpty)
   }
@@ -48,7 +48,7 @@ struct ReminderTests {
   @Test func followsADelay() {
     let bus = departure("31", in: 12)
     let result = Reminders.check(
-      reminder(bus), departures: ["S": [moved(bus, to: 15)]], now: at(8))
+      reminder(bus), departures: ["S": [moved(bus, to: 15)]], walks: [:], now: at(8))
     #expect(result.alerts.isEmpty)
     #expect(result.remaining[bus.id]?.departure.expected == at(15))
   }
@@ -56,27 +56,45 @@ struct ReminderTests {
   @Test func warnsWhenTheDepartureIsCancelled() {
     let bus = departure("31", in: 12)
     let cancelled = departure("31", in: 12, cancelled: true)
-    let result = Reminders.check(reminder(bus), departures: ["S": [cancelled]], now: at(1))
+    let result = Reminders.check(
+      reminder(bus), departures: ["S": [cancelled]], walks: [:], now: at(1))
     #expect(result.alerts == [.cancelled(cancelled, stop: "Majorstuen")])
     #expect(result.remaining.isEmpty)
   }
 
   @Test func dropsADepartureThatAlreadyLeftWithoutAWarning() {
     let bus = departure("31", in: 12)
-    let result = Reminders.check(reminder(bus), departures: [:], now: at(12))
+    let result = Reminders.check(reminder(bus), departures: [:], walks: [:], now: at(12))
     #expect(result.alerts.isEmpty)
     #expect(result.remaining.isEmpty)
   }
 
   @Test func keepsTheLastKnownTimeWhenTheStopIsNoLongerFetched() {
     let bus = departure("31", in: 12)
-    let result = Reminders.check(reminder(bus), departures: [:], now: at(7))
+    let result = Reminders.check(reminder(bus), departures: [:], walks: [:], now: at(7))
     #expect(result.alerts == [.leave(bus, stop: "Majorstuen")])
+  }
+
+  @Test func followsTheWalkingTimeAsYouMove() {
+    let bus = departure("31", in: 12)
+    let closer = Reminders.check(
+      reminder(bus), departures: ["S": [bus]], walks: ["S": 3], now: at(7))
+    #expect(closer.alerts.isEmpty)
+    #expect(closer.remaining[bus.id]?.walkMinutes == 3)
+  }
+
+  @Test func dropsADepartureThatVanishedFromItsStop() {
+    let bus = departure("31", in: 12)
+    let result = Reminders.check(
+      reminder(bus), departures: ["S": [departure("31", in: 20)]], walks: [:], now: at(7))
+    #expect(result.alerts.isEmpty)
+    #expect(result.remaining.isEmpty)
   }
 
   @Test func givesAStopAtTheDoorAMinuteOfWarning() {
     let bus = departure("31", in: 12)
-    let result = Reminders.check(reminder(bus, walk: 0), departures: ["S": [bus]], now: at(11))
+    let result = Reminders.check(
+      reminder(bus, walk: 0), departures: ["S": [bus]], walks: [:], now: at(11))
     #expect(result.alerts == [.leave(bus, stop: "Majorstuen")])
     #expect(Reminders.armable(bus, walkMinutes: 0, now: at(10.9)))
     #expect(!Reminders.armable(bus, walkMinutes: 0, now: at(11)))
