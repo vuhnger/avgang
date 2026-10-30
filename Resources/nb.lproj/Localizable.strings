@@ -37,7 +37,6 @@
 "Platform %@, %@" = "Plattform %1$@, %2$@";
 "Could not load platforms." = "Kunne ikke hente plattformene.";
 "Try again" = "Prøv igjen";
-"Lines" = "Linjer";
 "Walking time" = "Gangtid";
 "Hide departures I can't reach" = "Skjul avganger jeg ikke rekker";
 "Departures shown" = "Avganger som vises";
