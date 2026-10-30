@@ -100,3 +100,21 @@ struct ResponsesTests {
     #expect(modes == [.metro, .unknown])
   }
 }
+
+struct PlatformGroupTests {
+  private func platform(_ id: String, _ lines: [Line]) -> Platform {
+    Platform(id: id, code: id, destinations: [], lines: lines)
+  }
+
+  @Test func platformsGroupByModeInModeOrderKeepingTheirOrder() {
+    let groups = Platform.byMode([
+      platform("D", [line("20", mode: .bus)]),
+      platform("A", [line("12", mode: .tram)]),
+      platform("E", [line("28", mode: .bus)]),
+      platform("1", [line("5")]),
+      platform("X", []),
+    ])
+    #expect(groups.map(\.mode) == [.metro, .tram, .bus, .unknown])
+    #expect(groups.map { $0.platforms.map(\.id) } == [["1"], ["A"], ["D", "E"], ["X"]])
+  }
+}

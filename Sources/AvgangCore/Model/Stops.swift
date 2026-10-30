@@ -60,6 +60,19 @@ public struct Platform: Equatable, Sendable, Identifiable {
   public let lines: [Line]
 }
 
+extension Platform {
+  public var mode: TransportMode { lines.first?.mode ?? .unknown }
+
+  public static func byMode(_ platforms: [Platform]) -> [(
+    mode: TransportMode, platforms: [Platform]
+  )] {
+    TransportMode.allCases.compactMap { mode in
+      let matching = platforms.filter { $0.mode == mode }
+      return matching.isEmpty ? nil : (mode, matching)
+    }
+  }
+}
+
 public enum Walking {
   public static let straightLineMetersPerMinute = 65.0
 

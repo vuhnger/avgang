@@ -205,44 +205,39 @@ private struct FavoriteDetail: View {
 
   var body: some View {
     Form {
-      Section {
-        if let platforms {
-          ForEach(platforms) { platform in
-            Toggle(isOn: included(platform.id, in: \.excludedQuays)) {
-              HStack(spacing: 8) {
-                if let code = platform.code { PlatformChip(code: code, tint: .secondary) }
-                Text(towards(platform)).lineLimit(2)
+      if let platforms {
+        let groups = Platform.byMode(platforms)
+        ForEach(groups, id: \.mode) { group in
+          Section {
+            if groups.count > 1 {
+              HStack {
+                Toggle(
+                  sources: group.platforms.map { included($0.id, in: \.excludedQuays) },
+                  isOn: \.self
+                ) {
+                  Label(group.mode.title, systemImage: group.mode.symbol)
+                }
+                .toggleStyle(.checkbox)
+                Spacer()
+                Text(group.platforms.count, format: .number).foregroundStyle(.secondary)
               }
             }
-            .toggleStyle(.checkbox)
+            ForEach(group.platforms) { platform in
+              row(platform)
+            }
           }
-        } else if failed {
+        }
+      } else if failed {
+        Section {
           HStack {
             Text("Could not load platforms.").foregroundStyle(.secondary)
             Spacer()
             Button("Try again", action: retry)
           }
-        } else {
-          ProgressView().controlSize(.small).frame(maxWidth: .infinity)
         }
-      }
-      if !lines.isEmpty {
+      } else {
         Section {
-          LabeledContent("Lines") {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 40), spacing: 6)], spacing: 6) {
-              ForEach(lines) { line in
-                let shown = !favorite.excludedLines.contains(line.id)
-                Button {
-                  included(line.id, in: \.excludedLines).wrappedValue.toggle()
-                } label: {
-                  LineBadge(line: line, height: 24, fontSize: 13).opacity(shown ? 1 : 0.3)
-                }
-                .buttonStyle(.plain)
-                .accessibilityAddTraits(shown ? .isSelected : [])
-              }
-            }
-            .frame(maxWidth: 220)
-          }
+          ProgressView().controlSize(.small).frame(maxWidth: .infinity)
         }
       }
       Section {
@@ -267,11 +262,42 @@ private struct FavoriteDetail: View {
     .formStyle(.grouped)
   }
 
-  private var lines: [Line] {
-    var seen = Set<String>()
-    return (platforms ?? []).flatMap(\.lines)
-      .filter { seen.insert($0.id).inserted }
-      .sorted { $0.code.localizedStandardCompare($1.code) == .orderedAscending }
+  private func row(_ platform: Platform) -> some View {
+    let on = !favorite.excludedQuays.contains(platform.id)
+    return HStack(alignment: .top, spacing: 8) {
+      Toggle(isOn: included(platform.id, in: \.excludedQuays)) { Text(towards(platform)) }
+        .toggleStyle(.checkbox)
+        .labelsHidden()
+      VStack(alignment: .leading, spacing: 4) {
+        HStack(alignment: .top, spacing: 6) {
+          if let code = platform.code { PlatformChip(code: code, tint: .secondary) }
+          LazyVGrid(
+            columns: [GridItem(.adaptive(minimum: 34), spacing: 4, alignment: .leading)],
+            alignment: .leading, spacing: 4
+          ) {
+            ForEach(platform.lines) { line in
+              badge(line)
+            }
+          }
+        }
+        if !platform.destinations.isEmpty {
+          Text(towards(platform)).font(.caption).foregroundStyle(.secondary)
+        }
+      }
+      .opacity(on ? 1 : 0.4)
+      .disabled(!on)
+    }
+  }
+
+  private func badge(_ line: Line) -> some View {
+    let shown = !favorite.excludedLines.contains(line.id)
+    return Button {
+      included(line.id, in: \.excludedLines).wrappedValue.toggle()
+    } label: {
+      LineBadge(line: line, height: 20, fontSize: 12).opacity(shown ? 1 : 0.3)
+    }
+    .buttonStyle(.plain)
+    .accessibilityAddTraits(shown ? .isSelected : [])
   }
 
   private func towards(_ platform: Platform) -> String {
