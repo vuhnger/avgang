@@ -60,6 +60,9 @@ struct BoardView: View {
   }
 
   private var emptyText: LocalizedStringKey {
+    if let place = monitor.place, !monitor.settings.favorites.isEmpty {
+      return "No stops are checked for \(place.name). Check them under Places in Settings."
+    }
     if !monitor.settings.nearby.enabled { return "Add a stop in Settings to see departures here." }
     if monitor.access == .denied {
       return "Location is off for Avgang. Turn it on in System Settings to see stops near you."
@@ -70,6 +73,12 @@ struct BoardView: View {
 
   private var footer: some View {
     HStack {
+      if let place = monitor.place {
+        Text("At \(place.name)")
+          .font(.system(size: 12))
+          .foregroundStyle(Palette.lavender)
+          .lineLimit(1)
+      }
       if monitor.unreachable {
         Text("Could not reach Entur. Showing the last board.")
           .font(.system(size: 12))

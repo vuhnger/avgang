@@ -11,6 +11,7 @@ struct SettingsTests {
     #expect(settings.follow == .nearest)
     #expect(settings.clockAfter == 10)
     #expect(settings.alertDisruptions)
+    #expect(settings.places.isEmpty)
     #expect(settings.nearby.modes == [.metro, .tram, .bus])
   }
 
@@ -51,5 +52,21 @@ struct SettingsTests {
     #expect(!custom.needsLocation)
     custom.favorites[0].walkFromLocation = true
     #expect(custom.needsLocation)
+    custom.favorites[0].walkFromLocation = false
+    custom.places = [Place(name: "Home", coordinate: majorstuen)]
+    #expect(custom.needsLocation)
+  }
+
+  @Test func removingAFavoriteTakesItOutOfEveryPlace() {
+    var custom = Settings()
+    custom.favorites = [favorite("a"), favorite("b")]
+    var home = Place(name: "Home", coordinate: majorstuen)
+    home.stops = ["a", "b"]
+    var work = Place(name: "Work", coordinate: majorstuen)
+    work.stops = ["a"]
+    custom.places = [home, work]
+    custom.removeFavorite(at: 0)
+    #expect(custom.favorites.map(\.id) == ["b"])
+    #expect(custom.places.map(\.stops) == [["b"], []])
   }
 }

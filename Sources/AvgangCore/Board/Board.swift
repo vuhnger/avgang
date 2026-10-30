@@ -30,7 +30,8 @@ public enum Board {
     settings: Settings, departures: [String: [Departure]], nearby: [NearbyStop],
     location: Coordinate?, now: Date
   ) -> [BoardSection] {
-    let favorites = settings.favorites.map { favorite in
+    let place = settings.place(at: location)
+    let favorites = settings.favorites.filter { settings.shows($0, at: place) }.map { favorite in
       let walk = favorite.walk(from: location)
       return BoardSection(
         id: favorite.id, name: favorite.name, origin: .favorite, modes: favorite.modes,

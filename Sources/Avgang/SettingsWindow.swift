@@ -50,6 +50,8 @@ final class SettingsWindow: NSObject, NSWindowDelegate {
     tabs.addTabViewItem(
       tab(StopsPane(monitor: monitor), label: String(localized: "Stops"), symbol: "star"))
     tabs.addTabViewItem(
+      tab(PlacesPane(monitor: monitor), label: String(localized: "Places"), symbol: "house"))
+    tabs.addTabViewItem(
       tab(
         NearbyPane(monitor: monitor), label: String(localized: "Nearby"), symbol: "location"))
     tabs.addTabViewItem(

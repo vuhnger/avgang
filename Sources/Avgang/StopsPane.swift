@@ -15,10 +15,12 @@ final class StopCatalog {
   private(set) var platforms: [String: [Platform]] = [:]
   private(set) var platformsFailed: Set<String> = []
   @ObservationIgnored private let client: EnturClient
+  @ObservationIgnored private let layers: String
   @ObservationIgnored private var searching: Task<Void, Never>?
 
-  init(client: EnturClient) {
+  init(client: EnturClient, layers: String = "stopPlace") {
     self.client = client
+    self.layers = layers
   }
 
   func clear() {
@@ -39,11 +41,11 @@ final class StopCatalog {
   private func search() {
     searching?.cancel()
     let text = query
-    searching = Task { [weak self, client] in
+    searching = Task { [weak self, client, layers] in
       try? await Task.sleep(for: Self.searchDelay)
       guard !Task.isCancelled else { return }
       do {
-        let found = try await client.search(text)
+        let found = try await client.search(text, layers: layers)
         guard !Task.isCancelled else { return }
         self?.results = found
         self?.searchFailed = false
@@ -70,8 +72,10 @@ struct StopsPane: View {
   var body: some View {
     HStack(alignment: .top, spacing: 0) {
       VStack(alignment: .leading, spacing: 8) {
-        searchField
-        if !matches.isEmpty || catalog.searchFailed { results }
+        SearchField(title: "Add a stop", text: $catalog.query)
+        if !matches.isEmpty || catalog.searchFailed {
+          MatchList(matches: matches, failed: catalog.searchFailed, add: add)
+        }
         List(selection: $selection) {
           ForEach(monitor.settings.favorites) { favorite in
             FavoriteRow(favorite: favorite, platforms: catalog.platforms[favorite.id])
@@ -107,52 +111,6 @@ struct StopsPane: View {
     return catalog.results.filter { !saved.contains($0.id) }
   }
 
-  private var searchField: some View {
-    HStack(spacing: 6) {
-      Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
-      TextField("Add a stop", text: $catalog.query)
-        .textFieldStyle(.plain)
-    }
-    .padding(.horizontal, 8)
-    .frame(height: 28)
-    .background(.background, in: .rect(cornerRadius: 7))
-    .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(.separator))
-  }
-
-  private var results: some View {
-    VStack(alignment: .leading, spacing: 0) {
-      if catalog.searchFailed {
-        Text("Could not search. Check your connection.")
-          .font(.callout)
-          .foregroundStyle(.secondary)
-          .padding(8)
-      }
-      ForEach(matches) { match in
-        Button {
-          add(match)
-        } label: {
-          HStack(spacing: 8) {
-            VStack(alignment: .leading, spacing: 1) {
-              Text(match.name).lineLimit(1)
-              if let locality = match.locality {
-                Text(locality).font(.caption).foregroundStyle(.secondary)
-              }
-            }
-            Spacer(minLength: 4)
-            ModeIcons(modes: match.modes)
-            Image(systemName: "plus")
-          }
-          .padding(.horizontal, 8)
-          .padding(.vertical, 5)
-          .contentShape(.rect)
-        }
-        .buttonStyle(.plain)
-      }
-    }
-    .background(.background, in: .rect(cornerRadius: 7))
-    .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(.separator))
-  }
-
   @ViewBuilder private var detail: some View {
     if let index = monitor.settings.favorites.firstIndex(where: { $0.id == selection }) {
       let current = monitor.settings.favorites[index]
@@ -185,7 +143,7 @@ struct StopsPane: View {
   }
 
   private func remove(at index: Int) {
-    monitor.settings.favorites.remove(at: index)
+    monitor.settings.removeFavorite(at: index)
     let remaining = monitor.settings.favorites
     selection = remaining.indices.contains(index) ? remaining[index].id : remaining.last?.id
   }

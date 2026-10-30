@@ -38,6 +38,7 @@ final class Monitor {
   @ObservationIgnored private var woke = false
   @ObservationIgnored private var nearbyStale = true
   @ObservationIgnored private var seenNotices: [String: Date]?
+  @ObservationIgnored private var noticedAt: String?
   @ObservationIgnored private var loop: Task<Void, Never>?
   @ObservationIgnored private var sleeper: Task<Void, Never>?
   @ObservationIgnored private var ticker: Task<Void, Never>?
@@ -51,6 +52,10 @@ final class Monitor {
   var sections: [BoardSection] {
     Board.sections(
       settings: settings, departures: departures, nearby: nearbyStops, location: location, now: now)
+  }
+
+  var place: Place? {
+    settings.place(at: location)
   }
 
   var label: MenuBarLabel {
@@ -125,7 +130,7 @@ final class Monitor {
         nearbyStops = []
       }
     }
-    if settings.favorites != old.favorites { seenNotices = nil }
+    if settings.favorites != old.favorites || settings.places != old.places { seenNotices = nil }
     if settings.nearby.enabled != old.nearby.enabled || settings.nearby.radius != old.nearby.radius
     {
       nearbyStale = true
@@ -209,6 +214,10 @@ final class Monitor {
   }
 
   private func noticeDisruptions() {
+    if place?.id != noticedAt {
+      noticedAt = place?.id
+      seenNotices = nil
+    }
     var seen = seenNotices ?? [:]
     let fresh = Disruptions.fresh(in: sections, seen: &seen, now: Date())
     let seeded = seenNotices != nil
