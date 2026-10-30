@@ -1,13 +1,23 @@
 name: Release
 
 on:
-  push:
-    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version part to raise
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 permissions: {}
 
 jobs:
   release:
+    if: github.ref == 'refs/heads/main'
     runs-on: macos-26
     timeout-minutes: 30
     permissions:
@@ -16,19 +26,33 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
+      - name: Pick version
+        env:
+          BUMP: ${{ inputs.bump }}
+        run: |
+          LATEST="$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n 1)"
+          IFS=. read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          MAJOR="${MAJOR:-0}" MINOR="${MINOR:-0}" PATCH="${PATCH:-0}"
+          case "$BUMP" in
+            major) VERSION="$((MAJOR + 1)).0.0" ;;
+            minor) VERSION="$MAJOR.$((MINOR + 1)).0" ;;
+            patch) VERSION="$MAJOR.$MINOR.$((PATCH + 1))" ;;
+            *) echo "Unknown bump: $BUMP" >&2; exit 1 ;;
+          esac
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "TAG=v$VERSION" >> "$GITHUB_ENV"
       - name: Build app
-        run: VERSION="${GITHUB_REF_NAME#v}" scripts/bundle.sh
+        run: scripts/bundle.sh
       - name: Make dmg
         run: |
           mkdir build/dmg
           cp -R build/Avgang.app build/dmg/
           ln -s /Applications build/dmg/Applications
-          hdiutil create -volname Avgang -srcfolder build/dmg -ov -format UDZO "build/Avgang-${GITHUB_REF_NAME#v}.dmg"
+          hdiutil create -volname Avgang -srcfolder build/dmg -ov -format UDZO "build/Avgang-$VERSION.dmg"
       - name: Write appcast
         env:
           SPARKLE_ED_PRIVATE_KEY: ${{ secrets.SPARKLE_ED_PRIVATE_KEY }}
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
           DMG="build/Avgang-$VERSION.dmg"
           BUILD="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' build/Avgang.app/Contents/Info.plist)"
           SIGNATURE="$(printf '%s' "$SPARKLE_ED_PRIVATE_KEY" | .build/artifacts/sparkle/Sparkle/bin/sign_update --ed-key-file - "$DMG")"
@@ -42,14 +66,14 @@ jobs:
                 <sparkle:version>$BUILD</sparkle:version>
                 <sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>
                 <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-                <enclosure url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/Avgang-$VERSION.dmg" $SIGNATURE type="application/octet-stream"/>
+                <enclosure url="https://github.com/${GITHUB_REPOSITORY}/releases/download/$TAG/Avgang-$VERSION.dmg" $SIGNATURE type="application/octet-stream"/>
               </item>
             </channel>
           </rss>
           EOF
           xmllint --noout build/appcast.xml
-      - name: Draft release
+      - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
           NOTES: "The first launch says Apple could not verify Avgang is free of malware, because the app is not notarized. Click Done, open System Settings, go to Privacy & Security, click Open Anyway next to Avgang and confirm."
-        run: gh release create "$GITHUB_REF_NAME" --draft --verify-tag --title "$GITHUB_REF_NAME" --notes "$NOTES" --generate-notes "build/Avgang-${GITHUB_REF_NAME#v}.dmg" build/appcast.xml
+        run: gh release create "$TAG" --target "$GITHUB_SHA" --latest --title "$TAG" --notes "$NOTES" --generate-notes "build/Avgang-$VERSION.dmg" build/appcast.xml
