@@ -155,17 +155,21 @@ struct StopsPane: View {
 
   @ViewBuilder private var detail: some View {
     if let index = monitor.settings.favorites.firstIndex(where: { $0.id == selection }) {
+      let current = monitor.settings.favorites[index]
       FavoriteDetail(
-        favorite: $monitor.settings.favorites[index],
-        platforms: catalog.platforms[monitor.settings.favorites[index].id],
-        failed: catalog.platformsFailed.contains(monitor.settings.favorites[index].id),
-        retry: {
-          let id = monitor.settings.favorites[index].id
-          Task { await catalog.loadPlatforms(for: id) }
-        },
+        favorite: Binding(
+          get: { monitor.settings.favorites.first { $0.id == current.id } ?? current },
+          set: { edited in
+            guard let at = monitor.settings.favorites.firstIndex(where: { $0.id == current.id })
+            else { return }
+            monitor.settings.favorites[at] = edited
+          }),
+        platforms: catalog.platforms[current.id],
+        failed: catalog.platformsFailed.contains(current.id),
+        retry: { Task { await catalog.loadPlatforms(for: current.id) } },
         remove: { remove(at: index) }
       )
-      .id(monitor.settings.favorites[index].id)
+      .id(current.id)
     } else {
       Text("Search for a stop to add it.")
         .foregroundStyle(.secondary)
@@ -265,13 +269,12 @@ private struct FavoriteDetail: View {
         }
       }
       Section {
-        Stepper(value: $favorite.walkMinutes, in: Favorite.walkRange) {
-          LabeledContent("Walking time", value: String(localized: "\(favorite.walkMinutes) min"))
-        }
+        NumberField(
+          title: "Walking time", value: $favorite.walkMinutes, range: Favorite.walkRange,
+          unit: "min")
         Toggle("Hide departures I can't reach", isOn: $favorite.hideUnreachable)
-        Stepper(value: $favorite.shown, in: Favorite.shownRange) {
-          LabeledContent("Departures shown", value: "\(favorite.shown)")
-        }
+        NumberField(
+          title: "Departures shown", value: $favorite.shown, range: Favorite.shownRange)
       }
       Section {
         Button("Remove \(favorite.name)", role: .destructive, action: remove)

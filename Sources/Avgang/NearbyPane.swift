@@ -19,12 +19,12 @@ struct NearbyPane: View {
               .frame(width: 52, alignment: .trailing)
           }
         }
-        Stepper(value: $monitor.settings.nearby.stops, in: NearbySettings.stopsRange) {
-          LabeledContent("Stops shown", value: "\(monitor.settings.nearby.stops)")
-        }
-        Stepper(value: $monitor.settings.nearby.perStop, in: NearbySettings.perStopRange) {
-          LabeledContent("Departures per stop", value: "\(monitor.settings.nearby.perStop)")
-        }
+        NumberField(
+          title: "Stops shown", value: $monitor.settings.nearby.stops,
+          range: NearbySettings.stopsRange)
+        NumberField(
+          title: "Departures per stop", value: $monitor.settings.nearby.perStop,
+          range: NearbySettings.perStopRange)
         LabeledContent("Include") {
           HStack(spacing: 6) {
             ForEach(TransportMode.pickable, id: \.self) { mode in
