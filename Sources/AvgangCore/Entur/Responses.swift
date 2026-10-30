@@ -33,6 +33,7 @@ enum Responses {
   }
 
   private struct Situation: Decodable {
+    let id: String
     let summary: [Text]
   }
 
@@ -68,9 +69,11 @@ enum Responses {
         realtime: realtime,
         cancelled: cancellation,
         notices: situations.map { situation in
-          Dictionary(
-            situation.summary.map { ($0.language ?? "", $0.value) }, uniquingKeysWith: { a, _ in a }
-          )
+          Notice(
+            id: situation.id,
+            summary: Dictionary(
+              situation.summary.map { ($0.language ?? "", $0.value) },
+              uniquingKeysWith: { a, _ in a }))
         })
     }
   }

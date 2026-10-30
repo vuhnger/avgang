@@ -11,6 +11,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
   private var status: StatusItemController?
   private var panel: PanelController?
+  private var toasts: ToastController?
   private var settingsWindow: SettingsWindow?
 
   private func others() -> [NSRunningApplication] {
@@ -54,6 +55,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     track({ [monitor] in monitor.label }, apply: { [weak status] in status?.update($0) })
     self.status = status
     self.panel = panel
+
+    let toasts = ToastController(
+      anchor: { [weak status] in status?.frame }, open: { [weak panel] in panel?.iconClicked() })
+    monitor.showAlert = { [weak toasts] in toasts?.show($0) }
+    monitor.clearAlerts = { [weak toasts] in toasts?.clear() }
+    self.toasts = toasts
 
     let updates = UpdateChecker(controller: updater)
     let window = SettingsWindow(

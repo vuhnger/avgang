@@ -54,7 +54,8 @@ struct ResponsesTests {
     let notice = try #require(osloS.first?.notices.first)
     #expect(notice.text(norwegian: true) == "Stopper ekstra på Stryken")
     #expect(notice.text(norwegian: false) == "Extra stop at Stryken")
-    #expect(["xx": "Only"].text(norwegian: false) == "Only")
+    #expect(notice.id.isEmpty == false)
+    #expect(Notice(id: "N", summary: ["xx": "Only"]).text(norwegian: false) == "Only")
   }
 
   @Test func nearbyStopsCarryTheirModes() throws {

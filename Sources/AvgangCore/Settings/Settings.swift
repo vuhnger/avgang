@@ -110,6 +110,7 @@ public struct Settings: Codable, Equatable, Sendable {
   public var follow = Follow.nearest
   public var openWith = OpenWith.hover
   public var clockAfter = 10
+  public var alertDisruptions = true
 
   public init() {}
 
@@ -118,7 +119,7 @@ public struct Settings: Codable, Equatable, Sendable {
   }
 
   private enum CodingKeys: String, CodingKey {
-    case favorites, nearby, label, follow, openWith, clockAfter
+    case favorites, nearby, label, follow, openWith, clockAfter, alertDisruptions
   }
 
   public init(from decoder: any Decoder) throws {
@@ -129,6 +130,8 @@ public struct Settings: Codable, Equatable, Sendable {
     follow = (try? values.decodeIfPresent(Follow.self, forKey: .follow)) ?? follow
     openWith = (try? values.decodeIfPresent(OpenWith.self, forKey: .openWith)) ?? openWith
     clockAfter = try values.decodeIfPresent(Int.self, forKey: .clockAfter) ?? clockAfter
+    alertDisruptions =
+      try values.decodeIfPresent(Bool.self, forKey: .alertDisruptions) ?? alertDisruptions
   }
 
   public static func load(from defaults: UserDefaults) -> Settings {

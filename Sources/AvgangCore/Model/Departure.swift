@@ -19,7 +19,22 @@ public struct Line: Hashable, Sendable, Identifiable {
   }
 }
 
-public typealias Notice = [String: String]
+public struct Notice: Equatable, Sendable {
+  private static let norwegian = ["no", "nob", "nb", "nn", "nno"]
+
+  public let id: String
+  public let summary: [String: String]
+
+  public init(id: String, summary: [String: String]) {
+    self.id = id
+    self.summary = summary
+  }
+
+  public func text(norwegian: Bool) -> String? {
+    let wanted = norwegian ? Self.norwegian : ["en", "eng"]
+    return wanted.lazy.compactMap { summary[$0] }.first ?? summary.values.sorted().first
+  }
+}
 
 public struct Departure: Equatable, Sendable, Identifiable {
   public let id: String
@@ -59,14 +74,5 @@ public struct Departure: Equatable, Sendable, Identifiable {
 
   public func reachable(walkMinutes: Int, now: Date) -> Bool {
     leaves(walkMinutes: walkMinutes) >= now
-  }
-}
-
-extension Notice {
-  private static let norwegian = ["no", "nob", "nb", "nn", "nno"]
-
-  public func text(norwegian: Bool) -> String? {
-    let wanted = norwegian ? Self.norwegian : ["en", "eng"]
-    return wanted.lazy.compactMap { self[$0] }.first ?? values.sorted().first
   }
 }

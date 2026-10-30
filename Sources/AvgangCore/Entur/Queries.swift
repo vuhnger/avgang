@@ -15,7 +15,7 @@ enum Queries {
           destinationDisplay { frontText }
           quay { id publicCode }
           serviceJourney { id line { id publicCode transportMode presentation { colour textColour } } }
-          situations { summary { value language } }
+          situations { id summary { value language } }
         }
       }
     }

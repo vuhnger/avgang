@@ -73,3 +73,9 @@
 "Could not turn launch at login on." = "Kunne ikke slå på start ved innlogging.";
 "Could not turn launch at login off." = "Kunne ikke slå av start ved innlogging.";
 "Another app uses that shortcut." = "En annen app bruker den hurtigtasten.";
+"Time to leave" = "På tide å gå";
+"%@ from %@" = "%1$@ fra %2$@";
+"Remind me when to leave" = "Minn meg på når jeg må gå";
+"Cancel reminder" = "Avbryt påminnelsen";
+"Alert me about disruptions at my stops" = "Varsle meg om avvik på stoppene mine";
+"Reminder set" = "Påminnelse satt";
