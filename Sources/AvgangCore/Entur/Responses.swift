@@ -155,7 +155,9 @@ enum Responses {
   static func departures(from data: Data) throws -> [String: [Departure]] {
     let payload = try decode(DeparturesData.self, from: data)
     return Dictionary(
-      payload.stopPlaces.compactMap { $0 }.map { ($0.id, $0.estimatedCalls.map(\.departure)) },
+      payload.stopPlaces.compactMap { $0 }.map {
+        ($0.id, $0.estimatedCalls.map(\.departure).sorted { $0.expected < $1.expected })
+      },
       uniquingKeysWith: { a, _ in a })
   }
 

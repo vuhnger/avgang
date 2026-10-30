@@ -69,7 +69,13 @@ final class Monitor {
       self?.nearbyStale = true
       self?.retry()
     }
-    watcher.onAccess = { [weak self] in self?.access = $0 }
+    watcher.onAccess = { [weak self] access in
+      self?.access = access
+      if access == .denied {
+        self?.location = nil
+        self?.nearbyStops = []
+      }
+    }
     if settings.nearby.enabled { watcher.start() }
     ticker = Task { [weak self] in
       while !Task.isCancelled {
@@ -136,7 +142,7 @@ final class Monitor {
       woke = false
       forced = false
       if poll { await refresh() }
-      let wait = min(max(remaining, 0.05), Self.longestSleep)
+      let wait = due ? 0.05 : min(max(remaining, 0.05), Self.longestSleep)
       let sleep = Task<Void, Never> { _ = try? await Task.sleep(for: .seconds(wait)) }
       sleeper = sleep
       await sleep.value
@@ -153,11 +159,10 @@ final class Monitor {
       departures = try await client.departures(stopIDs: ids)
       lastError = nil
       failures = 0
-    } catch let error as EnturError {
-      lastError = error
-      failures += 1
     } catch {
-      return
+      guard !Task.isCancelled else { return }
+      lastError = error as? EnturError ?? .transport
+      failures += 1
     }
     unreachable = lastError != nil
     finishedAt = Date()

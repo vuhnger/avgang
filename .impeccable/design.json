@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-30T16:54:33+00:00",
+  "title": "Design System: Avgang",
+  "extensions": {
+    "colorMeta": {
+      "board-navy": {
+        "role": "primary",
+        "displayName": "Board Navy",
+        "canonical": "#181C56",
+        "tonalRamp": [
+          "oklch(15% 0.103 273.9)",
+          "oklch(26% 0.103 273.9)",
+          "oklch(38% 0.103 273.9)",
+          "oklch(49% 0.103 273.9)",
+          "oklch(61% 0.103 273.9)",
+          "oklch(72% 0.103 273.9)",
+          "oklch(84% 0.103 273.9)",
+          "oklch(95% 0.103 273.9)"
+        ]
+      },
+      "coral": {
+        "role": "secondary",
+        "displayName": "Coral",
+        "canonical": "#FF5959",
+        "tonalRamp": [
+          "oklch(15% 0.202 24.1)",
+          "oklch(26% 0.202 24.1)",
+          "oklch(38% 0.202 24.1)",
+          "oklch(49% 0.202 24.1)",
+          "oklch(61% 0.202 24.1)",
+          "oklch(72% 0.202 24.1)",
+          "oklch(84% 0.202 24.1)",
+          "oklch(95% 0.202 24.1)"
+        ]
+      },
+      "canary": {
+        "role": "secondary",
+        "displayName": "Canary",
+        "canonical": "#FFE082",
+        "tonalRamp": [
+          "oklch(15% 0.119 91.7)",
+          "oklch(26% 0.119 91.7)",
+          "oklch(38% 0.119 91.7)",
+          "oklch(49% 0.119 91.7)",
+          "oklch(61% 0.119 91.7)",
+          "oklch(72% 0.119 91.7)",
+          "oklch(84% 0.119 91.7)",
+          "oklch(95% 0.119 91.7)"
+        ]
+      },
+      "band-navy": {
+        "role": "neutral",
+        "displayName": "Band Navy",
+        "canonical": "#11143C",
+        "tonalRamp": [
+          "oklch(15% 0.076 274.9)",
+          "oklch(26% 0.076 274.9)",
+          "oklch(38% 0.076 274.9)",
+          "oklch(49% 0.076 274.9)",
+          "oklch(61% 0.076 274.9)",
+          "oklch(72% 0.076 274.9)",
+          "oklch(84% 0.076 274.9)",
+          "oklch(95% 0.076 274.9)"
+        ]
+      },
+      "lavender": {
+        "role": "neutral",
+        "displayName": "Lavender",
+        "canonical": "#AEB7E2",
+        "tonalRamp": [
+          "oklch(15% 0.062 275.6)",
+          "oklch(26% 0.062 275.6)",
+          "oklch(38% 0.062 275.6)",
+          "oklch(49% 0.062 275.6)",
+          "oklch(61% 0.062 275.6)",
+          "oklch(72% 0.062 275.6)",
+          "oklch(84% 0.062 275.6)",
+          "oklch(95% 0.062 275.6)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "rgba(255, 255, 255, 0.08)"
+      }
+    },
+    "typographyMeta": {
+      "stop-header": {
+        "displayName": "Stop header",
+        "purpose": "Stop name in each board section."
+      },
+      "destination": {
+        "displayName": "Destination",
+        "purpose": "Destination in each departure row."
+      },
+      "time-realtime": {
+        "displayName": "Time realtime",
+        "purpose": "Departure time with realtime data."
+      },
+      "time-scheduled": {
+        "displayName": "Time scheduled",
+        "purpose": "Departure time without realtime data, prefixed ca."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Walking time, distance, notices and board messages."
+      },
+      "badge": {
+        "displayName": "Badge",
+        "purpose": "Line code inside the line badge."
+      },
+      "chip": {
+        "displayName": "Chip",
+        "purpose": "Platform code inside the platform chip."
+      },
+      "menu-bar-line": {
+        "displayName": "Menu bar line",
+        "purpose": "Line code in the menu bar label."
+      },
+      "menu-bar-time": {
+        "displayName": "Menu bar time",
+        "purpose": "Countdown in the menu bar label."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-window",
+        "value": "native NSWindow shadow (hasShadow)",
+        "purpose": "Lifts the board panel off the desktop."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hover-dwell",
+        "value": "140ms",
+        "purpose": "With Open with set to Hover, pointer rest on the status item before the panel opens."
+      },
+      {
+        "name": "hover-grace",
+        "value": "50ms",
+        "purpose": "Delay before the panel closes after the pointer leaves."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Board panel",
+      "kind": "card",
+      "refersTo": "board-panel",
+      "description": "The always-dark departure board popover.",
+      "html": "<div class=\"ds-board\"><div class=\"ds-head\"><span>Jernbanetorget</span><span class=\"ds-meta\">4 min</span></div><div class=\"ds-row\"><span class=\"ds-badge\">3</span><span class=\"ds-dest\">Mortensrud</span><span class=\"ds-time\">2 min</span></div><div class=\"ds-band\"></div><div class=\"ds-head\"><span>Nationaltheatret</span><span class=\"ds-meta\">320 m</span></div><div class=\"ds-row\"><span class=\"ds-badge ds-tram\">12</span><span class=\"ds-dest\">Majorstuen</span><span class=\"ds-time ds-sched\">ca. 6 min</span></div></div>",
+      "css": ".ds-board { width: 344px; background: #181C56; color: #fff; border-radius: 16px; overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; padding-bottom: 4px; } .ds-head { display: flex; justify-content: space-between; align-items: center; min-height: 26px; padding: 12px 14px 4px; font-size: 16px; font-weight: 600; } .ds-meta { font-size: 13px; font-weight: 400; color: #AEB7E2; font-variant-numeric: tabular-nums; } .ds-row { display: flex; align-items: center; gap: 10px; height: 40px; margin: 0 14px; border-top: 1px solid rgba(255,255,255,0.08); } .ds-badge { min-width: 34px; height: 26px; padding: 0 6px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; background: #F08901; color: #fff; font-size: 15px; font-weight: 700; } .ds-tram { background: #B482FB; } .ds-dest { flex: 1; font-size: 15px; } .ds-time { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-sched { font-weight: 500; color: #AEB7E2; } .ds-band { height: 6px; background: #11143C; margin-top: 4px; }"
+    },
+    {
+      "name": "Departure row",
+      "kind": "custom",
+      "refersTo": "departure-row",
+      "description": "Badge, destination, platform and time, with delay and cancelled states.",
+      "html": "<div class=\"ds-rows\"><div class=\"ds-r\"><span class=\"ds-b\">5</span><span class=\"ds-d\">Vestli</span><span class=\"ds-p\">2</span><span class=\"ds-t\"><span class=\"ds-late\">+3</span>4 min</span></div><div class=\"ds-r ds-x\"><span class=\"ds-b\">5</span><span class=\"ds-d\">Vestli</span><span class=\"ds-p\">2</span><span class=\"ds-c\">Cancelled</span></div></div>",
+      "css": ".ds-rows { width: 316px; padding: 0 14px; background: #181C56; color: #fff; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; } .ds-r { display: flex; align-items: center; gap: 10px; height: 40px; border-top: 1px solid rgba(255,255,255,0.08); } .ds-b { min-width: 34px; height: 26px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; background: #F08901; color: #fff; font-size: 15px; font-weight: 700; } .ds-d { flex: 1; font-size: 15px; } .ds-p { min-width: 20px; height: 18px; padding: 0 4px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(174,183,226,0.45); border-radius: 4px; color: #AEB7E2; font-size: 12px; } .ds-t { min-width: 64px; text-align: right; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-late { font-size: 12px; color: #FFE082; margin-right: 4px; } .ds-c { min-width: 64px; text-align: right; font-size: 13px; font-weight: 600; color: #FF5959; } .ds-x .ds-b, .ds-x .ds-d { opacity: 0.55; } .ds-x .ds-d { text-decoration: line-through; }"
+    },
+    {
+      "name": "Line badge",
+      "kind": "chip",
+      "refersTo": "line-badge",
+      "description": "Line code on the operator's color, with the mode-color fallback.",
+      "html": "<div class=\"ds-badges\"><span class=\"ds-lb\" tabindex=\"0\" style=\"background:#F08901\">1</span><span class=\"ds-lb\" tabindex=\"0\" style=\"background:#B482FB\">17</span><span class=\"ds-lb\" tabindex=\"0\" style=\"background:#FF6392\">31</span><span class=\"ds-lb ds-off\" tabindex=\"0\" style=\"background:#42A5F5\">R30</span></div>",
+      "css": ".ds-badges { display: flex; gap: 6px; padding: 12px; background: #181C56; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; } .ds-lb { min-width: 34px; height: 26px; padding: 0 6px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; color: #fff; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; } .ds-lb:focus-visible { outline: 2px solid #AEB7E2; outline-offset: 2px; } .ds-off { opacity: 0.3; }"
+    },
+    {
+      "name": "Platform chip",
+      "kind": "chip",
+      "refersTo": "platform-chip",
+      "description": "Outlined platform code, lavender on the board.",
+      "html": "<div class=\"ds-chips\"><span class=\"ds-pc\">A</span><span class=\"ds-pc\">12</span></div>",
+      "css": ".ds-chips { display: flex; gap: 6px; padding: 12px; background: #181C56; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; } .ds-pc { min-width: 20px; height: 18px; padding: 0 4px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(174,183,226,0.45); border-radius: 4px; color: #AEB7E2; font-size: 12px; }"
+    },
+    {
+      "name": "Menu bar label",
+      "kind": "nav",
+      "refersTo": "menu-bar-label",
+      "description": "Template label showing the next departure in the menu bar.",
+      "html": "<div class=\"ds-mb\"><span class=\"ds-mbl\">3</span><span>5 min</span></div>",
+      "css": ".ds-mb { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; background: #e8e8ea; color: #000; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; } .ds-mbl { min-width: 18px; height: 16px; padding: 0 4px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid currentColor; border-radius: 4px; font-size: 11px; font-weight: 700; }"
+    }
+  ],
+  "narrative": {
+    "overview": "Avgang is a departure board in a popover. The board is an opaque navy panel taken from Entur's own boards, and it stays dark whatever the system appearance is. Each stop is a block of rows: line badge, destination, platform, time. The only saturated color on the board comes from the line badges and from status (delay, cancellation, disruption). Settings is a plain macOS preferences window with grouped forms and no custom styling beyond the shared badge and chip.",
+    "keyCharacteristics": [
+      "An always-dark navy board, 344px wide.",
+      "Line colors come from the operator, not from the app.",
+      "Rows are separated by hairlines, stops by a darker band.",
+      "Every changing number uses monospaced digits.",
+      "Native settings that follow the system appearance."
+    ],
+    "rules": [
+      {
+        "name": "The Operator Color Rule",
+        "body": "A line badge's fill is the operator's `presentation.colour` from Entur, and its text is the operator's `presentation.textColour`. If the operator gives a fill but no text color, the text is white. If the operator gives no fill, the badge uses the Entur mode color (metro #F08901, tram #B482FB, bus and coach #FF6392, rail #42A5F5, water #6FDFFF, any other mode lavender) with board navy text. Never hard-code a line's color in the app.",
+        "section": "colors"
+      },
+      {
+        "name": "The Status Color Rule",
+        "body": "Coral means cancelled and canary means late or disrupted. Neither is used for anything else on the board.",
+        "section": "colors"
+      },
+      {
+        "name": "The Steady Digits Rule",
+        "body": "Every number that changes over time uses monospaced digits: countdowns, delays, line codes, walking time, distance and the menu bar label.",
+        "section": "typography"
+      },
+      {
+        "name": "The Realtime Rule",
+        "body": "A realtime time is white and semibold. A time with no realtime data is lavender, medium weight and prefixed with `ca.`.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "**Do** keep the board navy and dark in every system appearance.",
+      "**Do** take line colors from Entur's operator data, falling back to the Entur mode colors.",
+      "**Do** use monospaced digits for every changing number.",
+      "**Do** separate stops with the 6pt band and rows with the 1pt rule.",
+      "**Do** use native grouped forms and system colors in settings."
+    ],
+    "donts": [
+      "**Don't** use coral or canary for anything except cancellation, delay and disruption.",
+      "**Don't** add glass, gradients or translucency to the board.",
+      "**Don't** add a title bar or subheading to the board.",
+      "**Don't** use em dashes or middle dot or bullet separators in UI text."
+    ]
+  }
+}

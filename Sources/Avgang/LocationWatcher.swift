@@ -47,6 +47,8 @@ final class LocationWatcher {
           self.receive(update)
         }
       } catch {
+        self?.task = nil
+        self?.last = nil
         self?.onAccess(.denied)
       }
     }
@@ -62,6 +64,7 @@ final class LocationWatcher {
     if update.authorizationDenied || update.authorizationDeniedGlobally
       || update.authorizationRestricted
     {
+      last = nil
       onAccess(.denied)
       return
     }

@@ -1,5 +1,5 @@
 enum Queries {
-  static let departureCount = 40
+  static let departureCount = 100
   static let nearestCount = 20
   static let blurSlack = 150
 
@@ -7,7 +7,7 @@ enum Queries {
     query Departures($ids: [String]!, $count: Int!) {
       stopPlaces(ids: $ids) {
         id
-        estimatedCalls(numberOfDepartures: $count, timeRange: 14400, arrivalDeparture: departures, includeCancelledTrips: true) {
+        estimatedCalls(numberOfDepartures: $count, numberOfDeparturesPerLineAndDestinationDisplay: \(Favorite.shownRange.upperBound), timeRange: 14400, arrivalDeparture: departures, includeCancelledTrips: true) {
           aimedDepartureTime
           expectedDepartureTime
           realtime

@@ -18,6 +18,26 @@ struct ResponsesTests {
     #expect(first.expected.timeIntervalSince(first.aimed) == 60)
   }
 
+  @Test func departuresSortByExpectedTime() throws {
+    func call(_ id: String, aimed: String, expected: String) -> String {
+      """
+      {"aimedDepartureTime": "\(aimed)", "expectedDepartureTime": "\(expected)", "realtime": true,
+       "cancellation": false, "destinationDisplay": {"frontText": "\(id)"},
+       "quay": {"id": "NSR:Quay:8076", "publicCode": "G"},
+       "serviceJourney": {"id": "\(id)", "line": {"id": "RUT:Line:46", "publicCode": "46",
+       "transportMode": "bus", "presentation": {"colour": "E60000", "textColour": "FFFFFF"}}},
+       "situations": []}
+      """
+    }
+    let late = call(
+      "late", aimed: "2026-10-30T12:00:00+01:00", expected: "2026-10-30T12:09:00+01:00")
+    let next = call(
+      "next", aimed: "2026-10-30T12:05:00+01:00", expected: "2026-10-30T12:05:00+01:00")
+    let json = #"{"data": {"stopPlaces": [{"id": "S", "estimatedCalls": [\#(late), \#(next)]}]}}"#
+    let board = try Responses.departures(from: Data(json.utf8))["S"]
+    #expect(board?.map(\.destination) == ["next", "late"])
+  }
+
   @Test func delaysUnderAMinuteShowNoMarker() throws {
     let osloS = try #require(
       try Responses.departures(from: try fixture("departures"))["NSR:StopPlace:59872"])

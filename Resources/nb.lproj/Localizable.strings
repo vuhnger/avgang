@@ -13,6 +13,7 @@
 "Settings" = "Innstillinger";
 "Add a stop in Settings to see departures here." = "Legg til en holdeplass i innstillingene for å se avganger her.";
 "Looking for departures near you." = "Ser etter avganger i nærheten.";
+"Location is off for Avgang. Turn it on in System Settings to see stops near you." = "Avgang har ikke tilgang til posisjonen din. Slå den på i Systeminnstillinger for å se holdeplasser i nærheten.";
 "Could not reach Entur. Showing the last board." = "Får ikke kontakt med Entur. Viser siste tavle.";
 "No departures to catch right now." = "Ingen avganger du rekker akkurat nå.";
 "Settings…" = "Innstillinger…";

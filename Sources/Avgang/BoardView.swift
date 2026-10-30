@@ -57,9 +57,12 @@ struct BoardView: View {
   }
 
   private var emptyText: LocalizedStringKey {
-    monitor.settings.favorites.isEmpty && !monitor.settings.nearby.enabled
-      ? "Add a stop in Settings to see departures here."
-      : "Looking for departures near you."
+    if !monitor.settings.nearby.enabled { return "Add a stop in Settings to see departures here." }
+    if monitor.access == .denied {
+      return "Location is off for Avgang. Turn it on in System Settings to see stops near you."
+    }
+    if monitor.location == nil { return "Looking for departures near you." }
+    return "No departures to catch right now."
   }
 
   private var footer: some View {
