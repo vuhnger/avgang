@@ -25,6 +25,7 @@ public struct Favorite: Codable, Equatable, Sendable, Identifiable {
   public var coordinate: Coordinate
   public var modes: [TransportMode]
   public var walkMinutes = 5
+  public var walkFromLocation = false
   public var hideUnreachable = true
   public var shown = 5
   public var excludedQuays: Set<String> = []
@@ -41,13 +42,18 @@ public struct Favorite: Codable, Equatable, Sendable, Identifiable {
     }
   }
 
+  public func walk(from location: Coordinate?) -> Int {
+    guard walkFromLocation, let location else { return walkMinutes }
+    return Walking.minutes(meters: location.distance(to: coordinate))
+  }
+
   public func keeps(_ departure: Departure) -> Bool {
     !excludedQuays.contains(departure.quayID) && !excludedLines.contains(departure.line.id)
   }
 
   private enum CodingKeys: String, CodingKey {
-    case id, name, coordinate, modes, walkMinutes, hideUnreachable, shown, excludedQuays,
-      excludedLines
+    case id, name, coordinate, modes, walkMinutes, walkFromLocation, hideUnreachable, shown,
+      excludedQuays, excludedLines
   }
 
   public init(from decoder: any Decoder) throws {
@@ -57,6 +63,8 @@ public struct Favorite: Codable, Equatable, Sendable, Identifiable {
     coordinate = try values.decode(Coordinate.self, forKey: .coordinate)
     modes = try values.decodeIfPresent([TransportMode].self, forKey: .modes) ?? []
     walkMinutes = try values.decodeIfPresent(Int.self, forKey: .walkMinutes) ?? walkMinutes
+    walkFromLocation =
+      try values.decodeIfPresent(Bool.self, forKey: .walkFromLocation) ?? walkFromLocation
     hideUnreachable =
       try values.decodeIfPresent(Bool.self, forKey: .hideUnreachable) ?? hideUnreachable
     shown = try values.decodeIfPresent(Int.self, forKey: .shown) ?? shown
@@ -104,6 +112,10 @@ public struct Settings: Codable, Equatable, Sendable {
   public var clockAfter = 10
 
   public init() {}
+
+  public var needsLocation: Bool {
+    nearby.enabled || favorites.contains(where: \.walkFromLocation)
+  }
 
   private enum CodingKeys: String, CodingKey {
     case favorites, nearby, label, follow, openWith, clockAfter

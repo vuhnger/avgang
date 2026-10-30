@@ -31,16 +31,17 @@ public enum Board {
     location: Coordinate?, now: Date
   ) -> [BoardSection] {
     let favorites = settings.favorites.map { favorite in
-      BoardSection(
+      let walk = favorite.walk(from: location)
+      return BoardSection(
         id: favorite.id, name: favorite.name, origin: .favorite, modes: favorite.modes,
-        walkMinutes: favorite.walkMinutes,
+        walkMinutes: walk,
         distance: location.map { Int(favorite.coordinate.distance(to: $0)) },
         departures: Array(
           (departures[favorite.id] ?? [])
             .filter { departure in
               favorite.keeps(departure)
                 && (favorite.hideUnreachable
-                  ? departure.reachable(walkMinutes: favorite.walkMinutes, now: now)
+                  ? departure.reachable(walkMinutes: walk, now: now)
                   : departure.expected >= now)
             }
             .prefix(favorite.shown)))

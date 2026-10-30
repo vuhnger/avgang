@@ -164,6 +164,7 @@ struct StopsPane: View {
             else { return }
             monitor.settings.favorites[at] = edited
           }),
+        location: monitor.location,
         platforms: catalog.platforms[current.id],
         failed: catalog.platformsFailed.contains(current.id),
         retry: { Task { await catalog.loadPlatforms(for: current.id) } },
@@ -221,6 +222,7 @@ private struct FavoriteRow: View {
 
 private struct FavoriteDetail: View {
   @Binding var favorite: Favorite
+  let location: Coordinate?
   let platforms: [Platform]?
   let failed: Bool
   let retry: () -> Void
@@ -269,9 +271,15 @@ private struct FavoriteDetail: View {
         }
       }
       Section {
-        NumberField(
-          title: "Walking time", value: $favorite.walkMinutes, range: Favorite.walkRange,
-          unit: "min")
+        Toggle("Walking time from my location", isOn: $favorite.walkFromLocation)
+        if favorite.walkFromLocation, location != nil {
+          LabeledContent(
+            "Walking time", value: String(localized: "\(favorite.walk(from: location)) min"))
+        } else {
+          NumberField(
+            title: "Walking time", value: $favorite.walkMinutes, range: Favorite.walkRange,
+            unit: "min")
+        }
         Toggle("Hide departures I can't reach", isOn: $favorite.hideUnreachable)
         NumberField(
           title: "Departures shown", value: $favorite.shown, range: Favorite.shownRange)

@@ -22,6 +22,7 @@ struct SettingsTests {
     #expect(settings.favorites.map(\.id) == ["NSR:StopPlace:58381"])
     #expect(settings.favorites.first?.walkMinutes == 5)
     #expect(settings.favorites.first?.hideUnreachable == true)
+    #expect(settings.favorites.first?.walkFromLocation == false)
     #expect(settings.label == .next)
     #expect(settings.nearby.radius == 800)
     #expect(settings.nearby.enabled)
@@ -35,8 +36,19 @@ struct SettingsTests {
     var custom = Settings()
     custom.favorites = [favorite("a", walk: 7)]
     custom.favorites[0].excludedLines = ["RUT:Line:4"]
+    custom.favorites[0].walkFromLocation = true
     custom.label = .leave
     custom.save(to: defaults)
     #expect(Settings.load(from: defaults) == custom)
+  }
+
+  @Test func locationIsNeededForNearbyOrALocationBasedWalk() {
+    var custom = Settings()
+    #expect(custom.needsLocation)
+    custom.nearby.enabled = false
+    custom.favorites = [favorite("a")]
+    #expect(!custom.needsLocation)
+    custom.favorites[0].walkFromLocation = true
+    #expect(custom.needsLocation)
   }
 }

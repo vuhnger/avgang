@@ -39,6 +39,7 @@
 "Try again" = "Prøv igjen";
 "Lines" = "Linjer";
 "Walking time" = "Gangtid";
+"Walking time from my location" = "Gangtid fra posisjonen min";
 "Hide departures I can't reach" = "Skjul avganger jeg ikke rekker";
 "Departures shown" = "Avganger som vises";
 "Remove %@" = "Fjern %@";
