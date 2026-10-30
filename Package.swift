@@ -16,7 +16,8 @@ let package = Package(
     .executableTarget(
       name: "Avgang",
       dependencies: ["AvgangCore", .product(name: "Sparkle", package: "Sparkle")]),
-    .testTarget(name: "AvgangCoreTests", dependencies: ["AvgangCore"]),
+    .testTarget(
+      name: "AvgangCoreTests", dependencies: ["AvgangCore"], resources: [.copy("Fixtures")]),
   ],
   swiftLanguageModes: [.v6]
 )

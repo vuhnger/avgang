@@ -1,0 +1,1697 @@
+{
+ "data": {
+  "stopPlaces": [
+   {
+    "id": "NSR:StopPlace:58381",
+    "name": "Majorstuen",
+    "estimatedCalls": [
+     {
+      "aimedDepartureTime": "2026-10-30T17:03:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:04:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ullerntoppen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8076",
+       "publicCode": "G"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:2054b9ac8cdafcbd33f9431b496f33a6",
+       "line": {
+        "id": "RUT:Line:46",
+        "publicCode": "46",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:04:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:04:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Kolsås"
+      },
+      "quay": {
+       "id": "NSR:Quay:8028",
+       "publicCode": "2"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:395ea2b1b2056e3829114a433b371ba9",
+       "line": {
+        "id": "RUT:Line:3",
+        "publicCode": "3",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:03:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:04:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Haugerud"
+      },
+      "quay": {
+       "id": "NSR:Quay:8079",
+       "publicCode": "F"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:0f2c91837d21c7705b1be455b841733e",
+       "line": {
+        "id": "RUT:Line:25",
+        "publicCode": "25",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:05:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:05:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Kjelsås"
+      },
+      "quay": {
+       "id": "NSR:Quay:8058",
+       "publicCode": "C"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:f1aced1d53193a2bec9a4d262107c366",
+       "line": {
+        "id": "RUT:Line:15",
+        "publicCode": "15",
+        "transportMode": "tram",
+        "presentation": {
+         "colour": "0B91EF",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:05:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:05:00+01:00",
+      "realtime": false,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Fornebu"
+      },
+      "quay": {
+       "id": "NSR:Quay:8067",
+       "publicCode": "J"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:0d9731025dcffd2e67cf6a73604161c7",
+       "line": {
+        "id": "RUT:Line:28",
+        "publicCode": "28",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:05:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:05:00+01:00",
+      "realtime": false,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Økern"
+      },
+      "quay": {
+       "id": "NSR:Quay:8042",
+       "publicCode": "D"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:94d2a65339035d669c3e2da9d2fa2ca9",
+       "line": {
+        "id": "RUT:Line:28",
+        "publicCode": "28",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:06:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:06:31+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Vestli via Storo"
+      },
+      "quay": {
+       "id": "NSR:Quay:8028",
+       "publicCode": "2"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:9451304aa720cb48fdd823840a78169a",
+       "line": {
+        "id": "RUT:Line:4",
+        "publicCode": "4",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:06:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:06:38+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Bergkrystallen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8027",
+       "publicCode": "1"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:14a9a6291c125d6896d049af775ca0b9",
+       "line": {
+        "id": "RUT:Line:4",
+        "publicCode": "4",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:06:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:06:57+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ljabru"
+      },
+      "quay": {
+       "id": "NSR:Quay:104414",
+       "publicCode": "A"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:58e46376711ada059caa10ae9a78d8d6",
+       "line": {
+        "id": "RUT:Line:19",
+        "publicCode": "19",
+        "transportMode": "tram",
+        "presentation": {
+         "colour": "0B91EF",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:06:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:08:42+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Galgeberg"
+      },
+      "quay": {
+       "id": "NSR:Quay:8042",
+       "publicCode": "D"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:5205cfa7c53be5e9d7a9fd9efb29ca3b",
+       "line": {
+        "id": "RUT:Line:20",
+        "publicCode": "20",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:07:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:08:43+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Skøyen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8089",
+       "publicCode": "E"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:c4e0848ca5e0d6d137bc869481d9900d",
+       "line": {
+        "id": "RUT:Line:20",
+        "publicCode": "20",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:09:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:09:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Kjelsås"
+      },
+      "quay": {
+       "id": "NSR:Quay:104413",
+       "publicCode": "B"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:499aa4bbce5c7751365bcce68f636c6d",
+       "line": {
+        "id": "RUT:Line:12",
+        "publicCode": "12",
+        "transportMode": "tram",
+        "presentation": {
+         "colour": "0B91EF",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:09:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:09:44+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Østerås"
+      },
+      "quay": {
+       "id": "NSR:Quay:8028",
+       "publicCode": "2"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:9fc1461af7d3394806f47384f286f812",
+       "line": {
+        "id": "RUT:Line:2",
+        "publicCode": "2",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:09:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:10:10+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ellingsrudåsen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8027",
+       "publicCode": "1"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:a412d81a6de35c462a72774f8d5435cc",
+       "line": {
+        "id": "RUT:Line:2",
+        "publicCode": "2",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "realtime": false,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Fornebu"
+      },
+      "quay": {
+       "id": "NSR:Quay:8089",
+       "publicCode": "E"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:3349b3b9a055e02497c0c5b827edbbf2",
+       "line": {
+        "id": "RUT:Line:28",
+        "publicCode": "28",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "realtime": false,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Galgeberg"
+      },
+      "quay": {
+       "id": "NSR:Quay:8042",
+       "publicCode": "D"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:b4dc159aab5a2caa3ab8dab17e8f9549",
+       "line": {
+        "id": "RUT:Line:20",
+        "publicCode": "20",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Kjelsås stasjon"
+      },
+      "quay": {
+       "id": "NSR:Quay:8079",
+       "publicCode": "F"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:f264496464504165fc6cf08ed47a8012",
+       "line": {
+        "id": "RUT:Line:25",
+        "publicCode": "25",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:10:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:11:24+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Mortensrud"
+      },
+      "quay": {
+       "id": "NSR:Quay:8027",
+       "publicCode": "1"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:51c220a546b82477ce04fcb329063782",
+       "line": {
+        "id": "RUT:Line:3",
+        "publicCode": "3",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:11:59+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Sognsvann"
+      },
+      "quay": {
+       "id": "NSR:Quay:8028",
+       "publicCode": "2"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:00cca3121ca98f783514936c024c44a2",
+       "line": {
+        "id": "RUT:Line:5",
+        "publicCode": "5",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:12:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:12:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Vestli via Tøyen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8027",
+       "publicCode": "1"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:0f3a30fa9b86438326c3849fd8c09e8e",
+       "line": {
+        "id": "RUT:Line:5",
+        "publicCode": "5",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:12:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:12:04+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Skøyen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8089",
+       "publicCode": "E"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:1e01eec014f05b219e09c3ac5230c296",
+       "line": {
+        "id": "RUT:Line:20",
+        "publicCode": "20",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:13:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:13:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ullerntoppen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8076",
+       "publicCode": "G"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:03b90959a687f7c65cf9cbae965f01f2",
+       "line": {
+        "id": "RUT:Line:46",
+        "publicCode": "46",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:13:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:13:00+01:00",
+      "realtime": false,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Fornebu"
+      },
+      "quay": {
+       "id": "NSR:Quay:8067",
+       "publicCode": "J"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:3349b3b9a055e02497c0c5b827edbbf2",
+       "line": {
+        "id": "RUT:Line:28",
+        "publicCode": "28",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:13:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:13:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Frognerseteren"
+      },
+      "quay": {
+       "id": "NSR:Quay:8028",
+       "publicCode": "2"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:f57f77c29b6deda5b67c99fe87113084",
+       "line": {
+        "id": "RUT:Line:1",
+        "publicCode": "1",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:12:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:13:59+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Økern"
+      },
+      "quay": {
+       "id": "NSR:Quay:8042",
+       "publicCode": "D"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:bee3bda992e48288f8454254f09e7173",
+       "line": {
+        "id": "RUT:Line:28",
+        "publicCode": "28",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:15:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:15:00+01:00",
+      "realtime": false,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Kjelsås"
+      },
+      "quay": {
+       "id": "NSR:Quay:8058",
+       "publicCode": "C"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:af7f116ccac498e727f2c0e476454041",
+       "line": {
+        "id": "RUT:Line:15",
+        "publicCode": "15",
+        "transportMode": "tram",
+        "presentation": {
+         "colour": "0B91EF",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:16:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:16:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ringen via Tøyen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8027",
+       "publicCode": "1"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:cd8a78d2f8bb0fe971830e4706daa3fd",
+       "line": {
+        "id": "RUT:Line:5",
+        "publicCode": "5",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:16:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:16:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Galgeberg"
+      },
+      "quay": {
+       "id": "NSR:Quay:8042",
+       "publicCode": "D"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:4c4007ff6b777ca6a69fcc72c9f618d4",
+       "line": {
+        "id": "RUT:Line:20",
+        "publicCode": "20",
+        "transportMode": "bus",
+        "presentation": {
+         "colour": "E60000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:16:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:16:03+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Østerås"
+      },
+      "quay": {
+       "id": "NSR:Quay:8028",
+       "publicCode": "2"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:118828c16fb29aa08d41a7748d4ab22e",
+       "line": {
+        "id": "RUT:Line:2",
+        "publicCode": "2",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:14:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:16:15+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Bergkrystallen"
+      },
+      "quay": {
+       "id": "NSR:Quay:8027",
+       "publicCode": "1"
+      },
+      "serviceJourney": {
+       "id": "RUT:ServiceJourney:c583ecf579a07a0240197e667b3eda0c",
+       "line": {
+        "id": "RUT:Line:1",
+        "publicCode": "1",
+        "transportMode": "metro",
+        "presentation": {
+         "colour": "EC700C",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     }
+    ]
+   },
+   {
+    "id": "NSR:StopPlace:59872",
+    "name": "Oslo S",
+    "estimatedCalls": [
+     {
+      "aimedDepartureTime": "2026-10-30T17:04:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:04:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Gjøvik"
+      },
+      "quay": {
+       "id": "NSR:Quay:550",
+       "publicCode": "6"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1225_443117-R",
+       "line": {
+        "id": "VYG:Line:RE30",
+        "publicCode": "RE30",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "FF0000",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": [
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6ZWE4OGM1ZjUtMjEzMC00ZjE0LWJlYWItNDU3MTJmNTE5YWU0",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Stopper ekstra på Stryken",
+          "language": "no"
+         },
+         {
+          "value": "Extra stop at Stryken",
+          "language": "en"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:04:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:04:20+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Kongsvinger"
+      },
+      "quay": {
+       "id": "NSR:Quay:571",
+       "publicCode": "11"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1025_913589-R",
+       "line": {
+        "id": "VYG:Line:R14",
+        "publicCode": "R14",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": [
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6NTlhY2RiODgtYTc1OS00YzI1LWExOTYtYjMzOGNkZjFmMDQ0",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Stopper ekstra på Tuen, Svingen og Bodung",
+          "language": "no"
+         },
+         {
+          "value": "Extra stop at Tuen, Svingen and Bodung",
+          "language": "en"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T16:59:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:05:09+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Asker"
+      },
+      "quay": {
+       "id": "NSR:Quay:559",
+       "publicCode": "5"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1024_913587-R",
+       "line": {
+        "id": "VYG:Line:R14",
+        "publicCode": "R14",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:06:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:06:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ski"
+      },
+      "quay": {
+       "id": "NSR:Quay:554",
+       "publicCode": "3"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1549_443197-R",
+       "line": {
+        "id": "VYG:Line:R23",
+        "publicCode": "R23",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:07:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:07:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Stabekk"
+      },
+      "quay": {
+       "id": "NSR:Quay:561",
+       "publicCode": "8"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1150-MOS_443033-R",
+       "line": {
+        "id": "VYG:Line:R21",
+        "publicCode": "R21",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:09:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:09:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Kongsberg"
+      },
+      "quay": {
+       "id": "NSR:Quay:559",
+       "publicCode": "5"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:525_765445-R",
+       "line": {
+        "id": "VYG:Line:R12",
+        "publicCode": "R12",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": [
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6NDgwOWJmNjctYTM2Ni00MDM0LTg5ZWMtOTBkY2I5YTUyOGQ1",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Færre vogner",
+          "language": "no"
+         },
+         {
+          "value": "Fewer carriages",
+          "language": "en"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:10:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:10:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Oslo Lufthavn"
+      },
+      "quay": {
+       "id": "NSR:Quay:557",
+       "publicCode": "13"
+      },
+      "serviceJourney": {
+       "id": "FLT:ServiceJourney:1-2614-3573-20261030",
+       "line": {
+        "id": "FLT:Line:FLY2",
+        "publicCode": "FLY2",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": null,
+         "textColour": null
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T16:54:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:10:51+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Eidsvoll"
+      },
+      "quay": {
+       "id": "NSR:Quay:571",
+       "publicCode": "11"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:524_906280-R",
+       "line": {
+        "id": "VYG:Line:R12",
+        "publicCode": "R12",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:12:07+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Lillestrøm"
+      },
+      "quay": {
+       "id": "NSR:Quay:555",
+       "publicCode": "9"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2250_443669-R",
+       "line": {
+        "id": "VYG:Line:L1",
+        "publicCode": "L1",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:11:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:12:28+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Spikkestad"
+      },
+      "quay": {
+       "id": "NSR:Quay:553",
+       "publicCode": "7"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2249_905640-R",
+       "line": {
+        "id": "VYG:Line:L1",
+        "publicCode": "L1",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:14:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:14:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Dal"
+      },
+      "quay": {
+       "id": "NSR:Quay:571",
+       "publicCode": "11"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1649_766586-R",
+       "line": {
+        "id": "VYG:Line:R13",
+        "publicCode": "R13",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:15:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:15:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Halden"
+      },
+      "quay": {
+       "id": "NSR:Quay:562",
+       "publicCode": "16"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:125_443123-R",
+       "line": {
+        "id": "VYG:Line:RE20",
+        "publicCode": "RE20",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "44C8F5",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:16:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:16:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ski"
+      },
+      "quay": {
+       "id": "NSR:Quay:551",
+       "publicCode": "10"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2749-HVK_443959-R",
+       "line": {
+        "id": "VYG:Line:L2",
+        "publicCode": "L2",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:17:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:17:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Stabekk"
+      },
+      "quay": {
+       "id": "NSR:Quay:561",
+       "publicCode": "8"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2752-SKI_660181-R",
+       "line": {
+        "id": "VYG:Line:L2",
+        "publicCode": "L2",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": [
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6MzA2NzU0ZGItYTAyYi00ZjZkLThhNDEtN2E4ZjMyMzhjNTYw",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Færre vogner",
+          "language": "no"
+         },
+         {
+          "value": "Fewer carriages",
+          "language": "en"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:19:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:19:58+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Drammen"
+      },
+      "quay": {
+       "id": "NSR:Quay:559",
+       "publicCode": "5"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1648_443317-R",
+       "line": {
+        "id": "VYG:Line:R13",
+        "publicCode": "R13",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:20:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:20:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Oslo Lufthavn"
+      },
+      "quay": {
+       "id": "NSR:Quay:557",
+       "publicCode": "13"
+      },
+      "serviceJourney": {
+       "id": "FLT:ServiceJourney:1-2614-3777-20261030",
+       "line": {
+        "id": "FLT:Line:FLY1",
+        "publicCode": "FLY1",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": null,
+         "textColour": null
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:22:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:22:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Moss"
+      },
+      "quay": {
+       "id": "NSR:Quay:568",
+       "publicCode": "12"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1149-HVK_443028-R",
+       "line": {
+        "id": "VYG:Line:R21",
+        "publicCode": "R21",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:24:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:24:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Eidsvoll"
+      },
+      "quay": {
+       "id": "NSR:Quay:571",
+       "publicCode": "11"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:824-DRM_661571-R",
+       "line": {
+        "id": "VYG:Line:RE11",
+        "publicCode": "RE11",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "44C8F5",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": [
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6YjFkYTBhZTYtNjdkYS00NjQ4LTgxY2MtMDkzZTc3NDY3M2U0",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Færre vogner",
+          "language": "no"
+         },
+         {
+          "value": "Fewer carriages",
+          "language": "en"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:25:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:25:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Neslandsvatn"
+      },
+      "quay": {
+       "id": "NSR:Quay:122023",
+       "publicCode": "33"
+      },
+      "serviceJourney": {
+       "id": "GOA:ServiceJourney:B717-1_20261030-OSL_NVT",
+       "line": {
+        "id": "GOA:Line:50",
+        "publicCode": "F5",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "0054A6",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:25:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:25:00+01:00",
+      "realtime": false,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Neslandsvatn"
+      },
+      "quay": {
+       "id": "NSR:Quay:1",
+       "publicCode": ""
+      },
+      "serviceJourney": {
+       "id": "GOA:ServiceJourney:B717-DT_79526-R",
+       "line": {
+        "id": "GOA:Line:50",
+        "publicCode": "F5",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "0054A6",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:26:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:26:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Lillestrøm"
+      },
+      "quay": {
+       "id": "NSR:Quay:555",
+       "publicCode": "9"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2150_443559-R",
+       "line": {
+        "id": "VYG:Line:L1",
+        "publicCode": "L1",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:27:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:27:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Asker"
+      },
+      "quay": {
+       "id": "NSR:Quay:561",
+       "publicCode": "8"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2149_905496-R",
+       "line": {
+        "id": "VYG:Line:L1",
+        "publicCode": "L1",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:29:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:29:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Drammen"
+      },
+      "quay": {
+       "id": "NSR:Quay:559",
+       "publicCode": "5"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:324-LHM_911980-R",
+       "line": {
+        "id": "VYG:Line:RE10",
+        "publicCode": "RE10",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "44C8F5",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:30:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:30:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Oslo Lufthavn"
+      },
+      "quay": {
+       "id": "NSR:Quay:569",
+       "publicCode": "14"
+      },
+      "serviceJourney": {
+       "id": "FLT:ServiceJourney:1-2614-3953-20261030",
+       "line": {
+        "id": "FLT:Line:FLY2",
+        "publicCode": "FLY2",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": null,
+         "textColour": null
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:31:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:31:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Skøyen"
+      },
+      "quay": {
+       "id": "NSR:Quay:553",
+       "publicCode": "7"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2852-SKI_660204-R",
+       "line": {
+        "id": "VYG:Line:L2",
+        "publicCode": "L2",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:31:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:31:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ski"
+      },
+      "quay": {
+       "id": "NSR:Quay:567",
+       "publicCode": "18"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:2849_444081-R",
+       "line": {
+        "id": "VYG:Line:L2",
+        "publicCode": "L2",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "8DC63F",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:34:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:34:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Lillehammer"
+      },
+      "quay": {
+       "id": "NSR:Quay:571",
+       "publicCode": "11"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:327-SUD_911985-R",
+       "line": {
+        "id": "VYG:Line:RE10",
+        "publicCode": "RE10",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "44C8F5",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": [
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6Nzk3NzM2OWItNTkzOC00YjY1LWE3NzAtYTczZGNiZjY2MWZm",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Færre vogner",
+          "language": "no"
+         },
+         {
+          "value": "Fewer carriages",
+          "language": "en"
+         }
+        ]
+       },
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6NWE5MGU3MWYtYjllYS00NTNkLTk3MDgtOTZkZTU2ODE3NTRh",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Forsinkelse forventes",
+          "language": "no"
+         },
+         {
+          "value": "Delay expected",
+          "language": "en"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:36:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:36:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Ski"
+      },
+      "quay": {
+       "id": "NSR:Quay:556",
+       "publicCode": "19"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1551_673621-R",
+       "line": {
+        "id": "VYG:Line:R23",
+        "publicCode": "R23",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:37:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:37:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Stabekk"
+      },
+      "quay": {
+       "id": "NSR:Quay:561",
+       "publicCode": "8"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:1152-MOS_443035-R",
+       "line": {
+        "id": "VYG:Line:R21",
+        "publicCode": "R21",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "DF2027",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": []
+     },
+     {
+      "aimedDepartureTime": "2026-10-30T17:39:00+01:00",
+      "expectedDepartureTime": "2026-10-30T17:39:00+01:00",
+      "realtime": true,
+      "cancellation": false,
+      "destinationDisplay": {
+       "frontText": "Skien"
+      },
+      "quay": {
+       "id": "NSR:Quay:559",
+       "publicCode": "5"
+      },
+      "serviceJourney": {
+       "id": "VYG:ServiceJourney:827-EVL_661579-R",
+       "line": {
+        "id": "VYG:Line:RE11",
+        "publicCode": "RE11",
+        "transportMode": "rail",
+        "presentation": {
+         "colour": "44C8F5",
+         "textColour": "FFFFFF"
+        }
+       }
+      },
+      "situations": [
+       {
+        "id": "UHRTaXR1YXRpb25FbGVtZW50Ok5TQjpTaXR1YXRpb25OdW1iZXI6MzdkMTQ1YTQtNGM0Zi00YTc1LTk2NTQtY2M4OTIxZTljY2Zj",
+        "severity": "normal",
+        "summary": [
+         {
+          "value": "Færre vogner",
+          "language": "no"
+         },
+         {
+          "value": "Fewer carriages",
+          "language": "en"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
