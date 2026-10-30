@@ -62,7 +62,7 @@ final class ToastController {
     self.anchor = anchor
     self.open = open
     hosting = ToastHostingView(
-      rootView: ToastStackView(model: model, tap: { _ in }, resized: { _ in }))
+      rootView: ToastStackView(model: model, tap: { _ in }, close: { _ in }, resized: { _ in }))
     hosting.sizingOptions = []
     panel = ToastPanel(
       contentRect: .zero, styleMask: [.nonactivatingPanel, .borderless], backing: .buffered,
@@ -79,6 +79,7 @@ final class ToastController {
     hosting.rootView = ToastStackView(
       model: model,
       tap: { [weak self] id in self?.tap(id) },
+      close: { [weak self] id in self?.remove(id) },
       resized: { [weak self] size in
         self?.size = size
         self?.layout()
@@ -177,12 +178,13 @@ final class ToastController {
 struct ToastStackView: View {
   let model: ToastModel
   let tap: (UUID) -> Void
+  let close: (UUID) -> Void
   let resized: (CGSize) -> Void
 
   var body: some View {
     VStack(spacing: 8) {
       ForEach(model.items) { item in
-        ToastCard(alert: item.alert)
+        ToastCard(alert: item.alert, close: { close(item.id) })
           .opacity(item.fading ? 0 : 1)
           .contentShape(.rect)
           .onTapGesture { tap(item.id) }
@@ -196,8 +198,30 @@ struct ToastStackView: View {
 
 struct ToastCard: View {
   let alert: TravelAlert
+  let close: () -> Void
 
   var body: some View {
+    HStack(spacing: 10) {
+      content
+      Button(action: close) {
+        Image(systemName: "xmark")
+          .font(.system(size: 11, weight: .semibold))
+          .foregroundStyle(Palette.lavender)
+          .frame(width: 20, height: 20)
+          .contentShape(.rect)
+      }
+      .buttonStyle(.plain)
+      .help("Close")
+      .accessibilityLabel("Close")
+    }
+    .padding(.horizontal, BoardMetrics.sidePadding)
+    .padding(.vertical, 12)
+    .frame(width: BoardMetrics.width)
+    .foregroundStyle(.white)
+    .background(Palette.navy, in: .rect(cornerRadius: BoardMetrics.radius))
+  }
+
+  private var content: some View {
     HStack(spacing: 10) {
       leading.frame(width: 38, alignment: .leading)
       VStack(alignment: .leading, spacing: 2) {
@@ -218,11 +242,6 @@ struct ToastCard: View {
           .monospacedDigit()
       }
     }
-    .padding(.horizontal, BoardMetrics.sidePadding)
-    .padding(.vertical, 12)
-    .frame(width: BoardMetrics.width)
-    .foregroundStyle(.white)
-    .background(Palette.navy, in: .rect(cornerRadius: BoardMetrics.radius))
     .accessibilityElement(children: .combine)
     .accessibilityAddTraits(.isButton)
   }
