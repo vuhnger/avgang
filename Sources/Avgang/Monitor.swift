@@ -76,7 +76,7 @@ final class Monitor {
         self?.nearbyStops = []
       }
     }
-    if settings.nearby.enabled { watcher.start() }
+    if settings.needsLocation { watcher.start() }
     ticker = Task { [weak self] in
       while !Task.isCancelled {
         try? await Task.sleep(for: Self.tick)
@@ -99,8 +99,8 @@ final class Monitor {
   }
 
   private func settingsChanged(from old: Settings) {
-    if settings.nearby.enabled != old.nearby.enabled {
-      if settings.nearby.enabled {
+    if settings.needsLocation != old.needsLocation {
+      if settings.needsLocation {
         watcher.start()
       } else {
         watcher.stop()
@@ -108,7 +108,10 @@ final class Monitor {
         nearbyStops = []
       }
     }
-    if settings.nearby.radius != old.nearby.radius { nearbyStale = true }
+    if settings.nearby.enabled != old.nearby.enabled || settings.nearby.radius != old.nearby.radius
+    {
+      nearbyStale = true
+    }
     settle?.cancel()
     settle = Task { [weak self] in
       try? await Task.sleep(for: Self.settleDelay)

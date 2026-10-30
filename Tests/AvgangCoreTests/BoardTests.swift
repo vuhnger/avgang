@@ -35,6 +35,29 @@ struct FavoriteBoardTests {
     #expect(sections.first?.departures.map(\.line.code) == ["5", "1"])
   }
 
+  @Test func walkingTimeCanFollowYourLocation() {
+    var home = favorite(walk: 2)
+    home.walkFromLocation = true
+    let here = north(of: majorstuen, meters: 640)
+    let sections = Board.sections(
+      settings: settings(favorites: [home]),
+      departures: [home.id: [departure("3", in: 5), departure("5", in: 10)]],
+      nearby: [], location: here, now: t0)
+    #expect(sections.first?.walkMinutes == 10)
+    #expect(sections.first?.departures.map(\.line.code) == ["5"])
+  }
+
+  @Test func walkingTimeFallsBackToTheTypedValueWithoutALocation() {
+    var home = favorite(walk: 2)
+    home.walkFromLocation = true
+    let sections = Board.sections(
+      settings: settings(favorites: [home]),
+      departures: [home.id: [departure("3", in: 5)]],
+      nearby: [], location: nil, now: t0)
+    #expect(sections.first?.walkMinutes == 2)
+    #expect(sections.first?.departures.map(\.line.code) == ["3"])
+  }
+
   @Test func showsUnreachableWhenAskedButNeverDeparted() {
     var home = favorite(walk: 4)
     home.hideUnreachable = false
