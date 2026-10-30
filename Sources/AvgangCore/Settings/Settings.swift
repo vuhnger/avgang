@@ -1,6 +1,6 @@
 import Foundation
 
-public enum LabelStyle: String, Codable, Sendable, CaseIterable {
+public enum MenuBarStyle: String, Codable, Sendable, CaseIterable {
   case icon
   case next
   case leave
@@ -98,7 +98,7 @@ public struct Settings: Codable, Equatable, Sendable {
 
   public var favorites: [Favorite] = []
   public var nearby = NearbySettings()
-  public var label = LabelStyle.next
+  public var label = MenuBarStyle.next
   public var follow = Follow.nearest
   public var openWith = OpenWith.hover
   public var clockAfter = 10
@@ -113,7 +113,7 @@ public struct Settings: Codable, Equatable, Sendable {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     favorites = try values.decodeIfPresent([Favorite].self, forKey: .favorites) ?? []
     nearby = try values.decodeIfPresent(NearbySettings.self, forKey: .nearby) ?? nearby
-    label = (try? values.decodeIfPresent(LabelStyle.self, forKey: .label)) ?? label
+    label = (try? values.decodeIfPresent(MenuBarStyle.self, forKey: .label)) ?? label
     follow = (try? values.decodeIfPresent(Follow.self, forKey: .follow)) ?? follow
     openWith = (try? values.decodeIfPresent(OpenWith.self, forKey: .openWith)) ?? openWith
     clockAfter = try values.decodeIfPresent(Int.self, forKey: .clockAfter) ?? clockAfter

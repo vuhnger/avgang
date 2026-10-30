@@ -13,7 +13,7 @@ public struct ShortcutModifiers: OptionSet, Codable, Sendable {
 public struct Shortcut: Codable, Equatable, Sendable {
   public static let key = "panelShortcut"
   public static let standard = Shortcut(
-    keyCode: 5, modifiers: [.control, .option, .command], label: "G")
+    keyCode: 0, modifiers: [.control, .option, .command], label: "A")
 
   public let keyCode: UInt32
   public let modifiers: ShortcutModifiers
@@ -36,7 +36,7 @@ public struct Shortcut: Codable, Equatable, Sendable {
     let names: [(ShortcutModifiers, String)] = [
       (.control, "Ctrl"), (.option, "Opt"), (.shift, "Shift"), (.command, "Cmd"),
     ]
-    return (names.filter { modifiers.contains($0.0) }.map(\.1) + [label]).joined(separator: "+")
+    return (names.filter { modifiers.contains($0.0) }.map(\.1) + [label]).joined(separator: " ")
   }
 
   public static func load(from defaults: UserDefaults) -> Shortcut {

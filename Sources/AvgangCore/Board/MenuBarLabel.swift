@@ -5,7 +5,7 @@ public enum MenuBarLabel: Equatable, Sendable {
   case next(line: String, countdown: Countdown)
   case leave(Countdown)
 
-  public init(style: LabelStyle, followed: BoardSection?, now: Date, clockAfter: Int) {
+  public init(style: MenuBarStyle, followed: BoardSection?, now: Date, clockAfter: Int) {
     let catchable = followed?.departures.first {
       !$0.cancelled && $0.reachable(walkMinutes: followed?.walkMinutes ?? 0, now: now)
     }

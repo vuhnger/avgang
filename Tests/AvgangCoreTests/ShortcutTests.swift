@@ -5,23 +5,23 @@ import Testing
 
 struct ShortcutTests {
   @Test func defaultReadsInPlainWords() {
-    #expect(Shortcut.standard.display == "Ctrl+Opt+Cmd+G")
+    #expect(Shortcut.standard.display == "Ctrl Opt Cmd A")
   }
 
   @Test func modifiersFollowCtrlOptShiftCmdOrder() {
     let shortcut = Shortcut(
       keyCode: 5, modifiers: [.command, .shift, .option, .control], label: "G")
-    #expect(shortcut.display == "Ctrl+Opt+Shift+Cmd+G")
+    #expect(shortcut.display == "Ctrl Opt Shift Cmd G")
   }
 
   @Test func specialKeyUsesItsName() {
     let shortcut = Shortcut(keyCode: 49, modifiers: [.command], characters: " ")
-    #expect(shortcut?.display == "Cmd+Space")
+    #expect(shortcut?.display == "Cmd Space")
   }
 
   @Test func functionKeyUsesItsName() {
     let shortcut = Shortcut(keyCode: 111, modifiers: [.control], characters: "\u{F70F}")
-    #expect(shortcut?.display == "Ctrl+F12")
+    #expect(shortcut?.display == "Ctrl F12")
   }
 
   @Test func printableKeyIsUppercased() {
