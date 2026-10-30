@@ -151,8 +151,10 @@ final class Monitor {
 
   private func refresh() async {
     do {
-      if nearbyStale, settings.nearby.enabled, let location {
-        nearbyStops = try await client.nearby(around: location, within: settings.nearby.radius)
+      if nearbyStale, settings.nearby.enabled, let location,
+        let stops = try? await client.nearby(around: location, within: settings.nearby.radius)
+      {
+        nearbyStops = stops
         nearbyStale = false
       }
       let ids = Board.fetchIDs(settings: settings, nearby: nearbyStops, location: location)

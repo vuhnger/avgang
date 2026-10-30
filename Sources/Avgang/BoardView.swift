@@ -197,14 +197,16 @@ private struct DepartureRow: View {
         .font(.system(size: 13, weight: .semibold))
         .foregroundStyle(Palette.coral)
     } else {
-      let shown = Countdown(until: departure.expected, now: now, clockAfter: clockAfter).text
+      let countdown = Countdown(until: departure.expected, now: now, clockAfter: clockAfter)
+      let shown = countdown.text
+      let exact = departure.realtime || countdown == .now
       HStack(alignment: .firstTextBaseline, spacing: 4) {
         if departure.delayMinutes > 0 {
           Text("+\(departure.delayMinutes)")
             .font(.system(size: 12, weight: .semibold))
             .foregroundStyle(Palette.canary)
         }
-        Text(departure.realtime ? shown : String(localized: "ca. \(shown)"))
+        Text(exact ? shown : String(localized: "ca. \(shown)"))
           .font(.system(size: 17, weight: departure.realtime ? .semibold : .medium))
           .foregroundStyle(departure.realtime ? Color.white : Palette.lavender)
       }

@@ -47,6 +47,7 @@ final class LocationWatcher {
           self.receive(update)
         }
       } catch {
+        guard !Task.isCancelled else { return }
         self?.task = nil
         self?.last = nil
         self?.onAccess(.denied)
