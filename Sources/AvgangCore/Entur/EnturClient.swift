@@ -57,14 +57,14 @@ public struct EnturClient: Sendable {
     return try Responses.platforms(from: data)
   }
 
-  public func search(_ text: String) async throws -> [StopMatch] {
+  public func search(_ text: String, layers: String = "stopPlace") async throws -> [StopMatch] {
     let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
     guard trimmed.count >= 2 else { return [] }
     var components = URLComponents(url: Self.geocoder, resolvingAgainstBaseURL: false)!
     components.queryItems = [
       URLQueryItem(name: "q", value: String(trimmed.prefix(100))),
       URLQueryItem(name: "limit", value: "8"),
-      URLQueryItem(name: "layers", value: "stopPlace"),
+      URLQueryItem(name: "layers", value: layers),
     ]
     var request = URLRequest(url: components.url!)
     request.setValue(Self.clientName, forHTTPHeaderField: "ET-Client-Name")

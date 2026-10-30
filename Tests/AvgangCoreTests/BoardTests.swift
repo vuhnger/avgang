@@ -162,6 +162,60 @@ struct NearbyBoardTests {
   }
 }
 
+struct PlaceBoardTests {
+  private let home = favorite("home")
+  private let work = favorite("work")
+  private let gym = favorite("gym")
+
+  private func board(_ places: [Place], location: Coordinate?) -> [String] {
+    var chosen = settings(favorites: [home, work, gym], nearby: false)
+    chosen.places = places
+    return Board.sections(
+      settings: chosen, departures: [:], nearby: [], location: location, now: t0
+    ).map(\.id)
+  }
+
+  private func place(_ name: String, at coordinate: Coordinate, stops: Set<String>) -> Place {
+    var place = Place(name: name, coordinate: coordinate, id: name)
+    place.stops = stops
+    return place
+  }
+
+  @Test func insideAPlaceShowsItsStopsAndStopsInNoPlace() {
+    let places = [
+      place("Home", at: majorstuen, stops: ["home"]),
+      place("Work", at: north(of: majorstuen, meters: 5000), stops: ["work"]),
+    ]
+    #expect(board(places, location: north(of: majorstuen, meters: 200)) == ["home", "gym"])
+  }
+
+  @Test func outsideEveryPlaceShowsEveryFavorite() {
+    let places = [place("Home", at: majorstuen, stops: ["home"])]
+    #expect(
+      board(places, location: north(of: majorstuen, meters: 900)) == ["home", "work", "gym"])
+  }
+
+  @Test func withoutALocationEveryFavoriteShows() {
+    let places = [place("Home", at: majorstuen, stops: ["home"])]
+    #expect(board(places, location: nil) == ["home", "work", "gym"])
+  }
+
+  @Test func theClosestCenterWinsWhenPlacesOverlap() {
+    var far = place("Far", at: north(of: majorstuen, meters: 400), stops: ["work"])
+    far.radius = 1000
+    let near = place("Near", at: north(of: majorstuen, meters: 100), stops: ["home"])
+    #expect(board([far, near], location: majorstuen) == ["home", "gym"])
+  }
+
+  @Test func aStopCanBelongToSeveralPlaces() {
+    let places = [
+      place("Home", at: majorstuen, stops: ["home", "gym"]),
+      place("Work", at: north(of: majorstuen, meters: 5000), stops: ["work", "gym"]),
+    ]
+    #expect(board(places, location: majorstuen) == ["home", "gym"])
+  }
+}
+
 struct FollowTests {
   private let nearbyStop = stop("near", meters: 100)
   private let homeFar = favorite("home", at: north(of: majorstuen, meters: 3000))

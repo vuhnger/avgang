@@ -111,15 +111,34 @@ public struct Settings: Codable, Equatable, Sendable {
   public var openWith = OpenWith.hover
   public var clockAfter = 10
   public var alertDisruptions = true
+  public var places: [Place] = []
 
   public init() {}
 
   public var needsLocation: Bool {
-    nearby.enabled || favorites.contains(where: \.walkFromLocation)
+    nearby.enabled || favorites.contains(where: \.walkFromLocation) || !places.isEmpty
+  }
+
+  public func place(at location: Coordinate?) -> Place? {
+    guard let location else { return nil }
+    return
+      places
+      .filter { $0.distance(to: location) <= Double($0.radius) }
+      .min { $0.distance(to: location) < $1.distance(to: location) }
+  }
+
+  public func shows(_ favorite: Favorite, at place: Place?) -> Bool {
+    guard let place else { return true }
+    return place.stops.contains(favorite.id) || !places.contains { $0.stops.contains(favorite.id) }
+  }
+
+  public mutating func removeFavorite(at index: Int) {
+    let id = favorites.remove(at: index).id
+    for place in places.indices { places[place].stops.remove(id) }
   }
 
   private enum CodingKeys: String, CodingKey {
-    case favorites, nearby, label, follow, openWith, clockAfter, alertDisruptions
+    case favorites, nearby, label, follow, openWith, clockAfter, alertDisruptions, places
   }
 
   public init(from decoder: any Decoder) throws {
@@ -132,6 +151,7 @@ public struct Settings: Codable, Equatable, Sendable {
     clockAfter = try values.decodeIfPresent(Int.self, forKey: .clockAfter) ?? clockAfter
     alertDisruptions =
       try values.decodeIfPresent(Bool.self, forKey: .alertDisruptions) ?? alertDisruptions
+    places = try values.decodeIfPresent([Place].self, forKey: .places) ?? []
   }
 
   public static func load(from defaults: UserDefaults) -> Settings {
