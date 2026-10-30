@@ -68,7 +68,7 @@ public struct EnturClient: Sendable {
       URLQueryItem(name: "limit", value: "8"),
       URLQueryItem(name: "layers", value: layers),
     ]
-    if let focus {
+    if let focus = focus?.blurred {
       components.queryItems?.append(URLQueryItem(name: "lat", value: "\(focus.latitude)"))
       components.queryItems?.append(URLQueryItem(name: "lon", value: "\(focus.longitude)"))
     }

@@ -98,6 +98,8 @@ struct PlacesPane: View {
       guard
         let stops = try? await monitor.client.nearby(around: place.coordinate, within: place.radius)
       else { return }
+      let current = monitor.settings.places.first { $0.id == place.id }
+      guard current?.coordinate == place.coordinate else { return }
       monitor.settings.adoptClosest(of: stops, forPlace: place.id)
     }
   }
