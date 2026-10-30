@@ -32,7 +32,7 @@ public enum Board {
   ) -> [BoardSection] {
     let place = settings.place(at: location)
     let favorites = settings.favorites.filter { settings.shows($0, at: place) }.map { favorite in
-      let walk = favorite.walk(from: location)
+      let walk = settings.walk(for: favorite, from: location)
       return BoardSection(
         id: favorite.id, name: favorite.name, origin: .favorite, modes: favorite.modes,
         walkMinutes: walk,

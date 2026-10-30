@@ -57,7 +57,9 @@ public struct EnturClient: Sendable {
     return try Responses.platforms(from: data)
   }
 
-  public func search(_ text: String, layers: String = "stopPlace") async throws -> [StopMatch] {
+  public func search(_ text: String, layers: String = "stopPlace", near focus: Coordinate? = nil)
+    async throws -> [StopMatch]
+  {
     let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
     guard trimmed.count >= 2 else { return [] }
     var components = URLComponents(url: Self.geocoder, resolvingAgainstBaseURL: false)!
@@ -66,6 +68,10 @@ public struct EnturClient: Sendable {
       URLQueryItem(name: "limit", value: "8"),
       URLQueryItem(name: "layers", value: layers),
     ]
+    if let focus {
+      components.queryItems?.append(URLQueryItem(name: "lat", value: "\(focus.latitude)"))
+      components.queryItems?.append(URLQueryItem(name: "lon", value: "\(focus.longitude)"))
+    }
     var request = URLRequest(url: components.url!)
     request.setValue(Self.clientName, forHTTPHeaderField: "ET-Client-Name")
     return try Responses.matches(from: try await send(request))

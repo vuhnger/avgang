@@ -63,6 +63,9 @@ struct PlacesPane: View {
           }),
         favorites: monitor.settings.favorites,
         location: monitor.location,
+        client: monitor.client,
+        relocate: { relocate(current.id, to: $0) },
+        addStop: { monitor.settings.add($0, toPlace: current.id) },
         remove: { remove(at: index) }
       )
       .id(current.id)
@@ -80,6 +83,23 @@ struct PlacesPane: View {
     monitor.settings.places.append(place)
     selection = place.id
     catalog.clear()
+    adoptClosestStop(for: place)
+  }
+
+  private func relocate(_ id: String, to coordinate: Coordinate) {
+    monitor.settings.move(place: id, to: coordinate)
+    guard let place = monitor.settings.places.first(where: { $0.id == id }) else { return }
+    adoptClosestStop(for: place)
+  }
+
+  private func adoptClosestStop(for place: Place) {
+    guard place.stops.isEmpty else { return }
+    Task {
+      guard
+        let stops = try? await monitor.client.nearby(around: place.coordinate, within: place.radius)
+      else { return }
+      monitor.settings.adoptClosest(of: stops, forPlace: place.id)
+    }
   }
 
   private func remove(at index: Int) {
@@ -111,7 +131,26 @@ private struct PlaceDetail: View {
   @Binding var place: Place
   let favorites: [Favorite]
   let location: Coordinate?
+  let relocate: (Coordinate) -> Void
+  let addStop: (StopMatch) -> Void
   let remove: () -> Void
+  @State private var addresses: StopCatalog
+  @State private var stops: StopCatalog
+
+  init(
+    place: Binding<Place>, favorites: [Favorite], location: Coordinate?, client: EnturClient,
+    relocate: @escaping (Coordinate) -> Void, addStop: @escaping (StopMatch) -> Void,
+    remove: @escaping () -> Void
+  ) {
+    _place = place
+    self.favorites = favorites
+    self.location = location
+    self.relocate = relocate
+    self.addStop = addStop
+    self.remove = remove
+    _addresses = State(initialValue: StopCatalog(client: client, layers: "address,stopPlace"))
+    _stops = State(initialValue: StopCatalog(client: client))
+  }
 
   var body: some View {
     Form {
@@ -121,16 +160,27 @@ private struct PlaceDetail: View {
           HStack(spacing: 8) {
             if let near { Text("Near \(near)").foregroundStyle(.secondary) }
             Button("Use where I am") {
-              if let location { place.coordinate = location }
+              if let location { relocate(location) }
             }
             .disabled(location == nil)
+          }
+        }
+        SearchField(title: "Search an address", text: $addresses.query)
+        if !addressMatches.isEmpty || addresses.searchFailed {
+          MatchList(matches: addressMatches, failed: addresses.searchFailed) { match in
+            relocate(match.coordinate)
+            addresses.clear()
           }
         }
         NumberField(title: "Within", value: $place.radius, range: Place.radiusRange, unit: "m")
       }
       Section {
-        if favorites.isEmpty {
-          Text("Add stops under Stops first.").foregroundStyle(.secondary)
+        SearchField(title: "Add a stop", text: $stops.query)
+        if !stopMatches.isEmpty || stops.searchFailed {
+          MatchList(matches: stopMatches, failed: stops.searchFailed) { match in
+            addStop(match)
+            stops.clear()
+          }
         }
         ForEach(favorites) { favorite in
           Toggle(favorite.name, isOn: checked(favorite.id))
@@ -142,6 +192,18 @@ private struct PlaceDetail: View {
       }
     }
     .formStyle(.grouped)
+    .onChange(of: place.coordinate, initial: true) { stops.focus = place.coordinate }
+  }
+
+  private var addressMatches: [StopMatch] {
+    addresses.query.isEmpty ? [] : addresses.results
+  }
+
+  private var stopMatches: [StopMatch] {
+    guard !stops.query.isEmpty else { return [] }
+    return stops.results
+      .filter { !place.stops.contains($0.id) }
+      .sorted { place.distance(to: $0.coordinate) < place.distance(to: $1.coordinate) }
   }
 
   private var near: String? {

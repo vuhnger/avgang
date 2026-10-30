@@ -8,7 +8,8 @@ struct SearchField: View {
   var body: some View {
     HStack(spacing: 6) {
       Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
-      TextField(title, text: $text)
+      TextField(title, text: $text, prompt: Text(title))
+        .labelsHidden()
         .textFieldStyle(.plain)
     }
     .padding(.horizontal, 8)

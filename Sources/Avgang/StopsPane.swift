@@ -14,6 +14,7 @@ final class StopCatalog {
   private(set) var searchFailed = false
   private(set) var platforms: [String: [Platform]] = [:]
   private(set) var platformsFailed: Set<String> = []
+  @ObservationIgnored var focus: Coordinate?
   @ObservationIgnored private let client: EnturClient
   @ObservationIgnored private let layers: String
   @ObservationIgnored private var searching: Task<Void, Never>?
@@ -41,11 +42,12 @@ final class StopCatalog {
   private func search() {
     searching?.cancel()
     let text = query
+    let focus = self.focus
     searching = Task { [weak self, client, layers] in
       try? await Task.sleep(for: Self.searchDelay)
       guard !Task.isCancelled else { return }
       do {
-        let found = try await client.search(text, layers: layers)
+        let found = try await client.search(text, layers: layers, near: focus)
         guard !Task.isCancelled else { return }
         self?.results = found
         self?.searchFailed = false
@@ -78,8 +80,12 @@ struct StopsPane: View {
         }
         List(selection: $selection) {
           ForEach(monitor.settings.favorites) { favorite in
-            FavoriteRow(favorite: favorite, platforms: catalog.platforms[favorite.id])
-              .tag(favorite.id)
+            FavoriteRow(
+              favorite: favorite,
+              walk: monitor.settings.walk(for: favorite, from: monitor.location),
+              platforms: catalog.platforms[favorite.id]
+            )
+            .tag(favorite.id)
           }
           .onMove { monitor.settings.favorites.move(fromOffsets: $0, toOffset: $1) }
         }
@@ -122,7 +128,8 @@ struct StopsPane: View {
             else { return }
             monitor.settings.favorites[at] = edited
           }),
-        location: monitor.location,
+        walk: monitor.settings.walk(for: current, from: monitor.location),
+        origin: origin(of: current),
         platforms: catalog.platforms[current.id],
         failed: catalog.platformsFailed.contains(current.id),
         retry: { Task { await catalog.loadPlatforms(for: current.id) } },
@@ -133,6 +140,14 @@ struct StopsPane: View {
       Text("Search for a stop to add it.")
         .foregroundStyle(.secondary)
     }
+  }
+
+  private func origin(of favorite: Favorite) -> String? {
+    guard let location = monitor.location else { return nil }
+    if let place = monitor.settings.place(at: location), place.stops.contains(favorite.id) {
+      return String(localized: "From \(place.name)")
+    }
+    return String(localized: "From your location")
   }
 
   private func add(_ match: StopMatch) {
@@ -151,6 +166,7 @@ struct StopsPane: View {
 
 private struct FavoriteRow: View {
   let favorite: Favorite
+  let walk: Int
   let platforms: [Platform]?
 
   var body: some View {
@@ -166,7 +182,7 @@ private struct FavoriteRow: View {
   }
 
   private var summary: String {
-    let walk = String(localized: "\(favorite.walkMinutes) min walk")
+    let walk = String(localized: "\(walk) min walk")
     guard !favorite.excludedQuays.isEmpty else {
       return String(localized: "All platforms, \(walk)")
     }
@@ -180,7 +196,8 @@ private struct FavoriteRow: View {
 
 private struct FavoriteDetail: View {
   @Binding var favorite: Favorite
-  let location: Coordinate?
+  let walk: Int
+  let origin: String?
   let platforms: [Platform]?
   let failed: Bool
   let retry: () -> Void
@@ -229,14 +246,15 @@ private struct FavoriteDetail: View {
         }
       }
       Section {
-        Toggle("Walking time from my location", isOn: $favorite.walkFromLocation)
-        if favorite.walkFromLocation, location != nil {
-          LabeledContent(
-            "Walking time", value: String(localized: "\(favorite.walk(from: location)) min"))
+        Picker("Walking time", selection: $favorite.walkFromLocation) {
+          Text("Based on location").tag(true)
+          Text("Manual").tag(false)
+        }
+        .pickerStyle(.segmented)
+        if favorite.walkFromLocation, let origin {
+          LabeledContent(origin, value: String(localized: "\(walk) min"))
         } else {
-          NumberField(
-            title: "Walking time", value: $favorite.walkMinutes, range: Favorite.walkRange,
-            unit: "min")
+          NumberField(title: "Minutes", value: $favorite.walkMinutes, range: Favorite.walkRange)
         }
         Toggle("Hide departures I can't reach", isOn: $favorite.hideUnreachable)
         NumberField(
