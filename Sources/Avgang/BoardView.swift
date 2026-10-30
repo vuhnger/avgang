@@ -36,7 +36,10 @@ struct BoardView: View {
         }
         ForEach(Array(sections.enumerated()), id: \.element.id) { index, section in
           if index > 0 { Palette.band.frame(height: BoardMetrics.band) }
-          StopSection(section: section, now: monitor.now, clockAfter: monitor.settings.clockAfter)
+          StopSection(
+            section: section, now: monitor.now, clockAfter: monitor.settings.clockAfter,
+            reminders: monitor.reminders,
+            toggleReminder: { monitor.toggleReminder(for: $0, in: section) })
         }
         footer
       }
@@ -93,6 +96,8 @@ private struct StopSection: View {
   let section: BoardSection
   let now: Date
   let clockAfter: Int
+  let reminders: [String: Reminder]
+  let toggleReminder: (Departure) -> Void
 
   var body: some View {
     VStack(spacing: 0) {
@@ -116,7 +121,10 @@ private struct StopSection: View {
           .overlay(alignment: .top) { Palette.rule.frame(height: BoardMetrics.rule) }
       }
       ForEach(section.departures) { departure in
-        DepartureRow(departure: departure, now: now, clockAfter: clockAfter)
+        DepartureRow(
+          departure: departure, now: now, clockAfter: clockAfter,
+          walkMinutes: section.walkMinutes, armed: reminders[departure.id] != nil,
+          toggle: { toggleReminder(departure) })
       }
     }
     .padding(.horizontal, BoardMetrics.sidePadding)
@@ -170,8 +178,13 @@ private struct DepartureRow: View {
   let departure: Departure
   let now: Date
   let clockAfter: Int
+  let walkMinutes: Int
+  let armed: Bool
+  let toggle: () -> Void
+  @State private var hovering = false
 
   var body: some View {
+    let armable = Reminders.armable(departure, walkMinutes: walkMinutes, now: now)
     HStack(spacing: 10) {
       LineBadge(line: departure.line)
         .frame(width: 38, alignment: .leading)
@@ -183,12 +196,32 @@ private struct DepartureRow: View {
         .strikethrough(departure.cancelled)
         .opacity(departure.cancelled ? 0.55 : 1)
         .frame(maxWidth: .infinity, alignment: .leading)
+      if armed || (hovering && armable) {
+        Button(action: toggle) {
+          Image(systemName: armed ? "bell.fill" : "bell")
+            .font(.system(size: 13))
+            .foregroundStyle(armed ? Color.white : Palette.lavender)
+            .frame(width: 22, height: 24)
+            .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .help(reminderLabel)
+      }
       if let platform = departure.platform { PlatformChip(code: platform) }
       time.frame(minWidth: 64, alignment: .trailing)
     }
     .frame(height: BoardMetrics.row)
+    .contentShape(.rect)
+    .onHover { hovering = $0 }
     .overlay(alignment: .top) { Palette.rule.frame(height: BoardMetrics.rule) }
     .accessibilityElement(children: .combine)
+    .accessibilityActions {
+      if armed || armable { Button(reminderLabel, action: toggle) }
+    }
+  }
+
+  private var reminderLabel: LocalizedStringKey {
+    armed ? "Cancel reminder" : "Remind me when to leave"
   }
 
   @ViewBuilder private var time: some View {

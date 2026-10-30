@@ -17,6 +17,7 @@ struct GeneralPane: View {
           Text("Show clock time after")
           Text("Departures further away than this show 08:25 instead of a countdown.")
         }
+        Toggle("Alert me about disruptions at my stops", isOn: $monitor.settings.alertDisruptions)
         LabeledContent("Keyboard shortcut") {
           Button(
             recorder.recording ? String(localized: "Type a shortcut") : recorder.shortcut.display

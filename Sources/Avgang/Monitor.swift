@@ -22,6 +22,9 @@ final class Monitor {
   private(set) var access = LocationAccess.current
   private(set) var now = Date()
   private(set) var unreachable = false
+  private(set) var reminders: [String: Reminder] = [:]
+  @ObservationIgnored var showAlert: (TravelAlert) -> Void = { _ in }
+  @ObservationIgnored var clearAlerts: () -> Void = {}
 
   @ObservationIgnored let client = EnturClient()
   @ObservationIgnored private let watcher = LocationWatcher()
@@ -33,6 +36,7 @@ final class Monitor {
   @ObservationIgnored private var forced = false
   @ObservationIgnored private var woke = false
   @ObservationIgnored private var nearbyStale = true
+  @ObservationIgnored private var seenNotices: [String: Date]?
   @ObservationIgnored private var loop: Task<Void, Never>?
   @ObservationIgnored private var sleeper: Task<Void, Never>?
   @ObservationIgnored private var ticker: Task<Void, Never>?
@@ -81,6 +85,7 @@ final class Monitor {
       while !Task.isCancelled {
         try? await Task.sleep(for: Self.tick)
         self?.now = Date()
+        self?.remind()
       }
     }
     loop = Task { await run() }
@@ -91,9 +96,20 @@ final class Monitor {
     nudge()
   }
 
+  func toggleReminder(for departure: Departure, in section: BoardSection) {
+    guard reminders.removeValue(forKey: departure.id) == nil else { return }
+    reminders[departure.id] = Reminder(
+      stopID: section.id, stop: section.name, walkMinutes: section.walkMinutes,
+      departure: departure)
+  }
+
   func panelVisibilityChanged(_ visible: Bool) {
     panelVisible = visible
-    guard visible else { return }
+    guard visible else {
+      remind()
+      return
+    }
+    clearAlerts()
     now = Date()
     if Date().timeIntervalSince(finishedAt) > 1 { retry() }
   }
@@ -125,7 +141,7 @@ final class Monitor {
   }
 
   private var active: Bool {
-    panelVisible || settings.label != .icon
+    panelVisible || settings.label != .icon || !reminders.isEmpty
   }
 
   private var remaining: TimeInterval {
@@ -164,6 +180,7 @@ final class Monitor {
       departures = try await client.departures(stopIDs: ids)
       lastError = nil
       failures = 0
+      noticeDisruptions()
     } catch {
       guard !Task.isCancelled else { return }
       lastError = error as? EnturError ?? .transport
@@ -173,5 +190,22 @@ final class Monitor {
     finishedAt = Date()
     jitter = Double.random(in: 0...1)
     now = Date()
+    remind()
+  }
+
+  private func remind() {
+    guard !panelVisible, !reminders.isEmpty else { return }
+    let (alerts, remaining) = Reminders.check(reminders, departures: departures, now: now)
+    if remaining != reminders { reminders = remaining }
+    alerts.forEach(showAlert)
+  }
+
+  private func noticeDisruptions() {
+    var seen = seenNotices ?? [:]
+    let fresh = Disruptions.fresh(in: sections, seen: &seen, now: Date())
+    let seeded = seenNotices != nil
+    seenNotices = seen
+    guard seeded, settings.alertDisruptions, !panelVisible else { return }
+    fresh.forEach(showAlert)
   }
 }

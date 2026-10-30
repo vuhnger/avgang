@@ -10,6 +10,7 @@ struct SettingsTests {
     #expect(settings.label == .next)
     #expect(settings.follow == .nearest)
     #expect(settings.clockAfter == 10)
+    #expect(settings.alertDisruptions)
     #expect(settings.nearby.modes == [.metro, .tram, .bus])
   }
 
