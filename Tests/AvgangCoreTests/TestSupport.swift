@@ -43,6 +43,7 @@ func favorite(
     match: StopMatch(id: id, name: id, locality: nil, coordinate: coordinate, modes: [.metro]),
     from: nil)
   favorite.walkMinutes = walk
+  favorite.walkFromLocation = false
   favorite.shown = shown
   return favorite
 }

@@ -36,6 +36,7 @@ public struct Favorite: Codable, Equatable, Sendable, Identifiable {
     name = match.name
     coordinate = match.coordinate
     modes = match.modes
+    walkFromLocation = true
     if let location {
       walkMinutes = min(
         Self.walkRange.upperBound, Walking.minutes(meters: location.distance(to: match.coordinate)))
@@ -130,6 +131,44 @@ public struct Settings: Codable, Equatable, Sendable {
   public func shows(_ favorite: Favorite, at place: Place?) -> Bool {
     guard let place else { return true }
     return place.stops.contains(favorite.id) || !places.contains { $0.stops.contains(favorite.id) }
+  }
+
+  public func walk(for favorite: Favorite, from location: Coordinate?) -> Int {
+    guard let place = place(at: location), place.stops.contains(favorite.id) else {
+      return favorite.walk(from: location)
+    }
+    return favorite.walk(from: place.coordinate)
+  }
+
+  public mutating func add(_ match: StopMatch, toPlace id: String) {
+    guard let index = places.firstIndex(where: { $0.id == id }) else { return }
+    if !favorites.contains(where: { $0.id == match.id }) {
+      favorites.append(Favorite(match: match, from: places[index].coordinate))
+    }
+    places[index].stops.insert(match.id)
+  }
+
+  public mutating func move(place id: String, to coordinate: Coordinate) {
+    guard let index = places.firstIndex(where: { $0.id == id }) else { return }
+    places[index].coordinate = coordinate
+    let place = places[index]
+    let inside = favorites.filter { place.distance(to: $0.coordinate) <= Double(place.radius) }
+    places[index].stops.formIntersection(inside.map(\.id))
+  }
+
+  public mutating func adoptClosest(of stops: [NearbyStop], forPlace id: String) {
+    guard let place = places.first(where: { $0.id == id }), place.stops.isEmpty,
+      let closest =
+        stops
+        .map({ (stop: $0, distance: place.distance(to: $0.coordinate)) })
+        .filter({ $0.distance <= Double(place.radius) })
+        .min(by: { $0.distance < $1.distance })?.stop
+    else { return }
+    add(
+      StopMatch(
+        id: closest.id, name: closest.name, locality: nil, coordinate: closest.coordinate,
+        modes: closest.modes),
+      toPlace: id)
   }
 
   public mutating func removeFavorite(at index: Int) {

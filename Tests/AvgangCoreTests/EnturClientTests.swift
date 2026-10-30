@@ -68,4 +68,19 @@ struct EnturClientTests {
     #expect(variables["lon"] as? Double == 10.716)
     #expect(variables["max"] as? Int == 650)
   }
+
+  @Test func searchSendsABlurredFocus() async throws {
+    let url = Mutex<URL?>(nil)
+    let client = EnturClient { request in
+      url.withLock { $0 = request.url }
+      return try await respond(200, Data(#"{"features":[]}"#.utf8))(request)
+    }
+    _ = try await client.search(
+      "Røa", near: Coordinate(latitude: 59.929213, longitude: 10.716342))
+    let items = try #require(
+      url.withLock { $0 }.flatMap { URLComponents(url: $0, resolvingAgainstBaseURL: false) }?
+        .queryItems)
+    #expect(items.first { $0.name == "lat" }?.value == "59.929")
+    #expect(items.first { $0.name == "lon" }?.value == "10.716")
+  }
 }
