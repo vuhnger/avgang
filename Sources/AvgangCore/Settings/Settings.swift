@@ -129,8 +129,8 @@ public struct Settings: Codable, Equatable, Sendable {
   }
 
   public func shows(_ favorite: Favorite, at place: Place?) -> Bool {
-    guard let place else { return true }
-    return place.stops.contains(favorite.id) || !places.contains { $0.stops.contains(favorite.id) }
+    place?.stops.contains(favorite.id) == true
+      || !places.contains { $0.stops.contains(favorite.id) }
   }
 
   public func walk(for favorite: Favorite, from location: Coordinate?) -> Int {

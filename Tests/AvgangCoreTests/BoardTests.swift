@@ -189,15 +189,24 @@ struct PlaceBoardTests {
     #expect(board(places, location: north(of: majorstuen, meters: 200)) == ["home", "gym"])
   }
 
-  @Test func outsideEveryPlaceShowsEveryFavorite() {
+  @Test func outsideEveryPlaceHidesPlaceStops() {
     let places = [place("Home", at: majorstuen, stops: ["home"])]
-    #expect(
-      board(places, location: north(of: majorstuen, meters: 900)) == ["home", "work", "gym"])
+    #expect(board(places, location: north(of: majorstuen, meters: 900)) == ["work", "gym"])
   }
 
-  @Test func withoutALocationEveryFavoriteShows() {
+  @Test func withoutALocationPlaceStopsHide() {
     let places = [place("Home", at: majorstuen, stops: ["home"])]
-    #expect(board(places, location: nil) == ["home", "work", "gym"])
+    #expect(board(places, location: nil) == ["work", "gym"])
+  }
+
+  @Test func outsideEveryPlaceAPlaceStopCanShowAsNearby() {
+    var chosen = settings(favorites: [favorite("close", at: north(of: majorstuen, meters: 120))])
+    chosen.places = [place("Work", at: north(of: majorstuen, meters: 5000), stops: ["close"])]
+    let sections = Board.sections(
+      settings: chosen, departures: ["close": [departure("20", in: 12, mode: .bus)]],
+      nearby: [stop("close", meters: 120)], location: majorstuen, now: t0)
+    #expect(sections.map(\.id) == ["close"])
+    #expect(sections.first?.origin == .nearby)
   }
 
   @Test func theClosestCenterWinsWhenPlacesOverlap() {
