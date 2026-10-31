@@ -77,7 +77,8 @@ public enum Board {
     -> [(stop: NearbyStop, distance: Double)]
   {
     guard settings.nearby.enabled, let location else { return [] }
-    let favoriteIDs = Set(settings.favorites.map(\.id))
+    let place = settings.place(at: location)
+    let favoriteIDs = Set(settings.favorites.filter { settings.shows($0, at: place) }.map(\.id))
     return
       nearby
       .filter { !favoriteIDs.contains($0.id) && !settings.nearby.modes.isDisjoint(with: $0.modes) }
